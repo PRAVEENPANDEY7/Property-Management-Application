@@ -15,7 +15,7 @@ public class CorsConfig {
 
     private static final org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(CorsConfig.class);
 
-    @Value("${app.cors.allowed-origins:http://localhost:5173,http://localhost:3000}")
+    @Value("${app.cors.allowed-origins:https://*.vercel.app,http://localhost:5173,http://localhost:3000}")
     private String allowedOrigins;
 
     @Bean
@@ -23,19 +23,15 @@ public class CorsConfig {
         CorsConfiguration configuration = new CorsConfiguration();
 
         List<String> origins = (allowedOrigins == null || allowedOrigins.isBlank())
-                ? List.of()
+                ? List.of("https://*.vercel.app", "http://localhost:5173", "http://localhost:3000")
                 : Arrays.stream(allowedOrigins.split(","))
                         .map(String::trim)
                         .filter(s -> !s.isEmpty())
                         .toList();
 
-        if (origins.isEmpty()) {
-            log.warn("No CORS allowed origins configured. Cross-origin browser requests will be rejected (fail-closed). Set CORS_ALLOWED_ORIGINS to allow frontend access.");
-        } else {
-            log.info("Configured CORS allowed origins: {}", origins);
-        }
+        log.info("Configured CORS allowed origin patterns: {}", origins);
 
-        configuration.setAllowedOrigins(origins);
+        configuration.setAllowedOriginPatterns(origins);
         configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"));
         configuration.setAllowedHeaders(List.of(
                 "Authorization",

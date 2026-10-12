@@ -1,5 +1,7 @@
 // API constants and application configuration
-const rawBaseUrl = import.meta.env.VITE_API_BASE_URL || '';
+const rawBaseUrl =
+  import.meta.env.VITE_API_BASE_URL ||
+  (import.meta.env.DEV ? '' : 'https://property-management-application.onrender.com');
 // Strip trailing slash and trailing /api to guarantee no duplicate /api/api path segments
 export const API_BASE_URL = rawBaseUrl.replace(/\/+$/, '').replace(/\/api$/, '');
 
