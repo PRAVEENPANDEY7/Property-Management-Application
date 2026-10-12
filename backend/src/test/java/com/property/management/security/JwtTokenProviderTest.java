@@ -92,15 +92,19 @@ class JwtTokenProviderTest {
     }
 
     @Test
-    @DisplayName("Should fail startup if secret is missing or insecure")
-    void shouldFailStartupOnInsecureSecret() {
-        JwtProperties insecureProps = new JwtProperties();
-        insecureProps.setSecret("short_secret_under_32_bytes");
+    @DisplayName("Should derive secure 256-bit key if secret is shorter than 32 bytes and reject missing secret")
+    void shouldHandleShortSecretAndRejectMissing() {
+        JwtProperties shortProps = new JwtProperties();
+        shortProps.setSecret("short_secret_under_32");
+        shortProps.setExpirationMs(3600000L);
 
-        JwtTokenProvider insecureProvider = new JwtTokenProvider(insecureProps);
-        assertThatThrownBy(insecureProvider::init)
-                .isInstanceOf(IllegalStateException.class)
-                .hasMessageContaining("minimum of 32 bytes");
+        JwtTokenProvider shortProvider = new JwtTokenProvider(shortProps);
+        shortProvider.init();
+
+        String token = shortProvider.generateToken(1L, "test@example.com", Role.USER);
+        assertThat(token).isNotBlank();
+        assertThat(shortProvider.validateToken(token)).isTrue();
+        assertThat(shortProvider.getEmailFromToken(token)).isEqualTo("test@example.com");
 
         JwtProperties nullProps = new JwtProperties();
         nullProps.setSecret(null);

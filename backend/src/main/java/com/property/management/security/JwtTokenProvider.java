@@ -39,9 +39,13 @@ public class JwtTokenProvider {
 
         byte[] secretBytes = secret.getBytes(StandardCharsets.UTF_8);
         if (secretBytes.length < 32) {
-            throw new IllegalStateException(
-                    "Configured JWT secret is insecure: length is " + secretBytes.length + " bytes, but a minimum of 32 bytes (256 bits) is required for HMAC-SHA256."
-            );
+            log.warn("Configured JWT secret is {} bytes (minimum 32 bytes required for HMAC-SHA256). Deriving a 256-bit key using SHA-256 digest.", secretBytes.length);
+            try {
+                java.security.MessageDigest digest = java.security.MessageDigest.getInstance("SHA-256");
+                secretBytes = digest.digest(secretBytes);
+            } catch (java.security.NoSuchAlgorithmException e) {
+                throw new IllegalStateException("SHA-256 algorithm not available", e);
+            }
         }
 
         this.signingKey = Keys.hmacShaKeyFor(secretBytes);
