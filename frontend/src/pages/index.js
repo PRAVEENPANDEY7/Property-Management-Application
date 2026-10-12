@@ -1,0 +1,10 @@
+export { default as LoginPage } from './auth/LoginPage';
+export { default as RegisterPage } from './auth/RegisterPage';
+export { default as PropertyListingPage } from './properties/PropertyListingPage';
+export { default as PropertyDetailsPage } from './properties/PropertyDetailsPage';
+export { default as AdminDashboardPage } from './admin/AdminDashboardPage';
+export { default as AdminPropertyListPage } from './admin/AdminPropertyListPage';
+export { default as AdminPropertyCreatePage } from './admin/AdminPropertyCreatePage';
+export { default as AdminPropertyEditPage } from './admin/AdminPropertyEditPage';
+export { default as AdminInquiriesPage } from './admin/AdminInquiriesPage';
+export { default as NotFoundPage } from './NotFoundPage';

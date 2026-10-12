@@ -1,0 +1,56 @@
+services:
+  # HavenEstate Spring Boot Backend Web Service on Render
+  - type: web
+    name: havenestate-backend
+    runtime: docker
+    dockerContext: backend
+    dockerfilePath: backend/Dockerfile
+    plan: starter
+    region: oregon
+    healthCheckPath: /api/health
+    disk:
+      name: havenestate-uploads
+      mountPath: /var/data/havenestate/uploads
+      sizeGB: 1
+    envVars:
+      - key: SPRING_PROFILES_ACTIVE
+        value: prod
+      - key: STORAGE_LOCATION
+        value: /var/data/havenestate/uploads
+      - key: DB_HOST
+        fromDatabase:
+          name: havenestate-db
+          property: host
+      - key: DB_PORT
+        fromDatabase:
+          name: havenestate-db
+          property: port
+      - key: DB_NAME
+        fromDatabase:
+          name: havenestate-db
+          property: database
+      - key: DB_USERNAME
+        fromDatabase:
+          name: havenestate-db
+          property: user
+      - key: DB_PASSWORD
+        fromDatabase:
+          name: havenestate-db
+          property: password
+      - key: JWT_SECRET
+        generateValue: true
+      - key: CORS_ALLOWED_ORIGINS
+        sync: false
+      - key: INITIAL_ADMIN_EMAIL
+        value: admin@havenestate.com
+      - key: INITIAL_ADMIN_PASSWORD
+        generateValue: true
+
+databases:
+  # Managed PostgreSQL Database
+  - name: havenestate-db
+    plan: starter
+    region: oregon
+    databaseName: propertymanagement
+    user: havenestate_user
+    ipAllowList: []

@@ -1,0 +1,32 @@
+server:
+  port: ${PORT:8081}
+
+spring:
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/propertymanagement}
+    username: ${DB_USERNAME:postgres}
+    password: ${DB_PASSWORD:762446388138}
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+    baseline-on-migrate: true
+
+app:
+  jwt:
+    secret: ${JWT_SECRET:c2VjdXJla2V5MTIzNDU2Nzg5MDEyMzQ1Njc4OTAxMjM0NTY3ODkwMTI=}
+    expiration-ms: 86400000
+    issuer: property-management-api
+  storage:
+    location: uploads/properties
+  cors:
+    allowed-origins: http://localhost:5173,http://localhost:3000
+  admin:
+    initial-email: ${INITIAL_ADMIN_EMAIL:admin@example.com}
+    initial-password: ${INITIAL_ADMIN_PASSWORD:AdminSecure123!}

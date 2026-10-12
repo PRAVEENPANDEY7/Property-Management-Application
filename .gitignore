@@ -1,0 +1,42 @@
+# Environment variables
+.env
+.env.local
+.env.*.local
+backend/.env
+frontend/.env
+*.env
+
+# Java / Maven
+backend/target/
+backend/.mvn/wrapper/maven-wrapper.jar
+*.class
+*.jar
+*.war
+
+# Node / Frontend
+frontend/node_modules/
+frontend/dist/
+frontend/dist-ssr/
+frontend/.eslintcache
+
+# File uploads / Persistent storage (local development)
+backend/uploads/
+uploads/
+
+# Database dumps & backups
+*.dump
+*.bak
+*.backup
+*.sql.gz
+
+# IDE & Editor files
+.idea/
+*.iml
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+.DS_Store
+Thumbs.db
