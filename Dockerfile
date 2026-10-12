@@ -1,17 +1,15 @@
 # Multi-stage Dockerfile for HavenEstate Spring Boot Backend (Root Context)
-# Stage 1: Build JAR using Maven
-FROM eclipse-temurin:17-jdk-jammy AS builder
+# Stage 1: Build JAR using official Maven 3.9 + Temurin 17 image
+FROM maven:3.9-eclipse-temurin-17 AS builder
 WORKDIR /app
 
-# Copy Maven wrapper and POM from backend directory
-COPY backend/.mvn/ .mvn/
-COPY backend/mvnw backend/pom.xml ./
-RUN chmod +x mvnw
-RUN ./mvnw dependency:go-offline -B || true
+# Copy POM first for dependency caching
+COPY backend/pom.xml ./
+RUN mvn dependency:go-offline -B || true
 
 # Copy backend source code and build production artifact
 COPY backend/src ./src
-RUN ./mvnw clean package -DskipTests -B
+RUN mvn clean package -DskipTests -B
 
 # Stage 2: Minimal Production JRE Runtime
 FROM eclipse-temurin:17-jre-jammy
