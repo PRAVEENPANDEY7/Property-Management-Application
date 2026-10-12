@@ -41,27 +41,24 @@ public class AdminBootstrapRunner implements ApplicationRunner {
         boolean hasEmail = email != null && !email.isBlank();
         boolean hasPassword = password != null && !password.isBlank();
 
-        // If neither is configured, skip bootstrap cleanly
-        if (!hasEmail && !hasPassword) {
-            log.info("Initial administrator bootstrap credentials not configured; skipping.");
-            return;
-        }
-
-        // If partially configured, fail clearly and safely
+        // If either is not configured, skip bootstrap cleanly without crashing the server
         if (!hasEmail || !hasPassword) {
-            throw new IllegalStateException(
-                    "Incomplete bootstrap configuration: both INITIAL_ADMIN_EMAIL and INITIAL_ADMIN_PASSWORD must be configured."
-            );
+            log.info("Administrator bootstrap credentials not fully configured (email: {}, password: {}); skipping bootstrap.",
+                    hasEmail ? "configured" : "missing",
+                    hasPassword ? "configured" : "missing");
+            return;
         }
 
         String normalizedEmail = email.trim().toLowerCase();
 
         if (!EMAIL_PATTERN.matcher(normalizedEmail).matches()) {
-            throw new IllegalStateException("INITIAL_ADMIN_EMAIL is not a valid email address: " + normalizedEmail);
+            log.warn("INITIAL_ADMIN_EMAIL is not a valid email address: '{}'. Skipping bootstrap.", normalizedEmail);
+            return;
         }
 
         if (password.length() < 8) {
-            throw new IllegalStateException("INITIAL_ADMIN_PASSWORD must be at least 8 characters long.");
+            log.warn("INITIAL_ADMIN_PASSWORD must be at least 8 characters long. Skipping bootstrap.");
+            return;
         }
 
         // Check if an administrator already exists in the system
