@@ -61,16 +61,39 @@ public class AdminBootstrapRunner implements ApplicationRunner {
             return;
         }
 
-        // Check if an administrator already exists in the system
-        boolean adminExists = userRepository.findByRole(Role.ADMIN, Pageable.ofSize(1)).hasContent();
-        if (adminExists) {
-            log.info("Administrator account already exists in database; bootstrap skipped to preserve existing credentials.");
-            return;
+        // Check if an administrator already exists with this email
+        java.util.Optional<User> existingAdminWithEmail = userRepository.findByEmailIgnoreCase(normalizedEmail);
+        if (existingAdminWithEmail.isPresent()) {
+            User adminUser = existingAdminWithEmail.get();
+            if (adminUser.getRole() == Role.ADMIN) {
+                if (adminProperties.isForceSyncCredentials() || !passwordEncoder.matches(password, adminUser.getPasswordHash())) {
+                    adminUser.setPasswordHash(passwordEncoder.encode(password));
+                    userRepository.save(adminUser);
+                    log.info("Administrator password successfully synchronized for email: '{}'.", normalizedEmail);
+                } else {
+                    log.info("Administrator account with email '{}' already verified and up-to-date.", normalizedEmail);
+                }
+                return;
+            } else {
+                log.warn("User with email '{}' already exists with ordinary role. Silently promoting existing users is prohibited. Bootstrap skipped.", normalizedEmail);
+                return;
+            }
         }
 
-        // Check if a non-admin user already has this email to prevent silent privilege escalation
-        if (userRepository.existsByEmailIgnoreCase(normalizedEmail)) {
-            log.warn("User with email '{}' already exists with ordinary role. Silently promoting existing users is prohibited. Bootstrap skipped.", normalizedEmail);
+        // Check if any administrator already exists in the system
+        var existingAdmins = userRepository.findByRole(Role.ADMIN, Pageable.ofSize(1));
+        if (existingAdmins.hasContent()) {
+            if (adminProperties.isForceSyncCredentials()) {
+                User primaryAdmin = existingAdmins.getContent().get(0);
+                log.info("forceSyncCredentials enabled: synchronizing primary admin ID {} from '{}' to '{}'.",
+                        primaryAdmin.getId(), primaryAdmin.getEmail(), normalizedEmail);
+                primaryAdmin.setEmail(normalizedEmail);
+                primaryAdmin.setPasswordHash(passwordEncoder.encode(password));
+                userRepository.save(primaryAdmin);
+                log.info("Primary administrator successfully updated to configured email '{}'.", normalizedEmail);
+                return;
+            }
+            log.info("Administrator account already exists in database; bootstrap skipped to preserve existing credentials.");
             return;
         }
 

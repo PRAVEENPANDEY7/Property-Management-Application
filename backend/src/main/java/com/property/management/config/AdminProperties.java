@@ -7,6 +7,7 @@ public class AdminProperties {
 
     private String initialEmail;
     private String initialPassword;
+    private boolean forceSyncCredentials;
 
     public String getInitialEmail() {
         return initialEmail;
@@ -22,5 +23,13 @@ public class AdminProperties {
 
     public void setInitialPassword(String initialPassword) {
         this.initialPassword = initialPassword;
+    }
+
+    public boolean isForceSyncCredentials() {
+        return forceSyncCredentials;
+    }
+
+    public void setForceSyncCredentials(boolean forceSyncCredentials) {
+        this.forceSyncCredentials = forceSyncCredentials;
     }
 }

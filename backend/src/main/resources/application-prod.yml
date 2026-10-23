@@ -56,6 +56,7 @@ app:
   admin:
     initial-email: ${INITIAL_ADMIN_EMAIL:admin@havenestate.com}
     initial-password: ${INITIAL_ADMIN_PASSWORD:AdminSecure123!}
+    force-sync-credentials: ${FORCE_ADMIN_PASSWORD_RESET:false}
 
 logging:
   level:

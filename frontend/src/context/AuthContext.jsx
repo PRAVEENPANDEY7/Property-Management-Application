@@ -91,6 +91,14 @@ export function AuthProvider({ children }) {
     localStorage.removeItem(STORAGE_KEYS.USER);
   }, []);
 
+  const updateUser = useCallback((updatedUserData) => {
+    setUser((prev) => {
+      const merged = { ...prev, ...updatedUserData };
+      localStorage.setItem(STORAGE_KEYS.USER, JSON.stringify(merged));
+      return merged;
+    });
+  }, []);
+
   const isAdmin = useMemo(() => {
     if (!user || !user.role) return false;
     const roleUpper = String(user.role).toUpperCase();
@@ -107,8 +115,9 @@ export function AuthProvider({ children }) {
       login,
       register,
       logout,
+      updateUser,
     }),
-    [token, user, loading, isAdmin, login, register, logout]
+    [token, user, loading, isAdmin, login, register, logout, updateUser]
   );
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

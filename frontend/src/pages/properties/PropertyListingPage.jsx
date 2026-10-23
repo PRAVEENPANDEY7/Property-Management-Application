@@ -74,58 +74,81 @@ export const PropertyListingPage = () => {
         </div>
       )}
 
-      {/* Hero Header & Search Section */}
-      <section className="mb-8 space-y-4 text-center sm:text-left">
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
-          <div className="space-y-1">
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-brand-50 text-brand-700 text-xs font-semibold mb-2">
-              <Sparkles className="w-3.5 h-3.5" /> Curated Architectural Estates
+      {/* Luxury Hero Header Section */}
+      <section className="mb-10 rounded-3xl bg-gradient-to-br from-slate-950 via-slate-900 to-indigo-950 text-white p-6 sm:p-10 lg:p-12 shadow-soft-xl relative overflow-hidden border border-slate-800">
+        {/* Ambient Decorative Glows */}
+        <div className="absolute top-0 right-0 -mr-20 -mt-20 w-80 h-80 rounded-full bg-brand-500/20 blur-3xl pointer-events-none" />
+        <div className="absolute bottom-0 left-1/3 -mb-20 w-60 h-60 rounded-full bg-purple-500/15 blur-3xl pointer-events-none" />
+
+        <div className="relative z-10 space-y-6">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-500/20 border border-brand-400/30 text-brand-300 text-xs font-bold uppercase tracking-wider">
+              <Sparkles className="w-3.5 h-3.5" /> Curated Architectural Estates &bull; 2026 Collection
             </div>
-            <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-surface-900">
-              Discover Premier Properties
+
+            {/* Sort Dropdown */}
+            <div className="flex items-center gap-2">
+              <span className="text-xs text-slate-300 font-medium">Sort by:</span>
+              <select
+                value={`${sortBy}-${sortDir}`}
+                onChange={(e) => {
+                  const [newSort, newDir] = e.target.value.split('-');
+                  setSort(newSort, newDir);
+                }}
+                className="px-3.5 py-2 rounded-xl border border-slate-700 bg-slate-900/90 text-xs font-semibold text-white shadow-soft focus:outline-none focus:ring-2 focus:ring-brand-400 cursor-pointer"
+              >
+                <option value="createdAt-desc" className="bg-slate-900">Newest Listings</option>
+                <option value="price-asc" className="bg-slate-900">Price: Low to High</option>
+                <option value="price-desc" className="bg-slate-900">Price: High to Low</option>
+                <option value="name-asc" className="bg-slate-900">Title: A to Z</option>
+              </select>
+            </div>
+          </div>
+
+          <div className="space-y-2 max-w-2xl">
+            <h1 className="text-3xl sm:text-5xl font-black tracking-tight text-white leading-tight">
+              Find Your Signature Sanctuary.
             </h1>
-            <p className="text-sm text-surface-500 max-w-xl">
-              Explore verified luxury homes, modern villas, and prime commercial estates.
+            <p className="text-xs sm:text-base text-slate-300 leading-relaxed font-normal">
+              Explore verified private villas, waterfront retreats, and high-yield properties in premier metropolitan destinations.
             </p>
           </div>
 
-          {/* Sort Dropdown */}
-          <div className="flex items-center gap-2 justify-end">
-            <span className="text-xs text-surface-400 font-medium">Sort by:</span>
-            <select
-              value={`${sortBy}-${sortDir}`}
-              onChange={(e) => {
-                const [newSort, newDir] = e.target.value.split('-');
-                setSort(newSort, newDir);
-              }}
-              className="px-3 py-2 rounded-xl border border-surface-200 bg-white text-xs font-semibold text-surface-700 shadow-soft focus:outline-none focus:ring-2 focus:ring-brand-500"
-            >
-              <option value="createdAt-desc">Newest Listings</option>
-              <option value="price-asc">Price: Low to High</option>
-              <option value="price-desc">Price: High to Low</option>
-              <option value="name-asc">Title: A to Z</option>
-            </select>
+          {/* Quick Pillars */}
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-2 text-xs">
+            <div className="p-3 rounded-2xl bg-white/5 backdrop-blur-md border border-white/10 flex items-center gap-2.5">
+              <Building2 className="w-4 h-4 text-brand-400 flex-shrink-0" />
+              <span className="font-semibold text-slate-200">100% Verified Estates</span>
+            </div>
+            <div className="p-3 rounded-2xl bg-white/5 backdrop-blur-md border border-white/10 flex items-center gap-2.5">
+              <Navigation className="w-4 h-4 text-emerald-400 flex-shrink-0" />
+              <span className="font-semibold text-slate-200">Geolocated Discovery</span>
+            </div>
+            <div className="col-span-2 sm:col-span-1 p-3 rounded-2xl bg-white/5 backdrop-blur-md border border-white/10 flex items-center gap-2.5">
+              <Sparkles className="w-4 h-4 text-purple-400 flex-shrink-0" />
+              <span className="font-semibold text-slate-200">Direct Agent Connect</span>
+            </div>
+          </div>
+
+          {/* Search Bar Container */}
+          <div className="pt-2">
+            <SearchBar
+              initialValue={search}
+              onSearch={setSearch}
+              placeholder="Search by title, city, architectural features, or lifestyle..."
+            />
           </div>
         </div>
+      </section>
 
-        {/* Search Bar */}
-        <div className="pt-2">
-          <SearchBar
-            initialValue={search}
-            onSearch={setSearch}
-            placeholder="Search by title, keywords, or architectural features..."
-          />
-        </div>
-
-        {/* City Filter Pills */}
-        <div className="pt-2">
-          <CityFilter
-            selectedCity={city}
-            onSelectCity={setCity}
-            detectedCity={detectedCity}
-            onUseDetectedCity={setCity}
-          />
-        </div>
+      {/* City Filter Pills */}
+      <section className="mb-6">
+        <CityFilter
+          selectedCity={city}
+          onSelectCity={setCity}
+          detectedCity={detectedCity}
+          onUseDetectedCity={setCity}
+        />
       </section>
 
       {/* Results Header */}

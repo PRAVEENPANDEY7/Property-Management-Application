@@ -44,7 +44,9 @@ services:
       - key: INITIAL_ADMIN_EMAIL
         value: admin@havenestate.com
       - key: INITIAL_ADMIN_PASSWORD
-        generateValue: true
+        value: AdminSecure123!
+      - key: FORCE_ADMIN_PASSWORD_RESET
+        value: "false"
 
 databases:
   # Managed PostgreSQL Database

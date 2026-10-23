@@ -8,9 +8,11 @@ import {
   ExternalLink,
   LogOut,
   Shield,
+  ShieldCheck,
   Menu,
   X,
   MessageSquare,
+  Settings,
 } from 'lucide-react';
 import { useAuth } from '../../hooks';
 import { ToastContainer } from '../molecules';
@@ -50,6 +52,12 @@ export const AdminLayout = ({ children, title = 'Administration' }) => {
       to: '/admin/inquiries',
       label: 'Customer Leads',
       icon: MessageSquare,
+      exact: true,
+    },
+    {
+      to: '/admin/settings',
+      label: 'Account & Security',
+      icon: ShieldCheck,
       exact: true,
     },
   ];
@@ -151,20 +159,24 @@ export const AdminLayout = ({ children, title = 'Administration' }) => {
 
         {/* Current Admin Capsule & Logout */}
         <div className="p-4 border-t border-slate-800 bg-slate-950/50">
-          <div className="flex items-center justify-between mb-3">
+          <Link
+            to="/admin/settings"
+            className="flex items-center justify-between mb-3 p-1.5 -m-1.5 rounded-xl hover:bg-slate-800/60 transition-colors group"
+            title="Manage Admin Profile & Password"
+          >
             <div className="flex items-center gap-2 overflow-hidden">
-              <div className="w-8 h-8 rounded-full bg-purple-900/60 text-purple-300 border border-purple-700/60 font-bold flex items-center justify-center text-xs flex-shrink-0">
+              <div className="w-8 h-8 rounded-full bg-purple-900/60 text-purple-300 border border-purple-700/60 font-bold flex items-center justify-center text-xs flex-shrink-0 group-hover:scale-105 transition-transform">
                 {user?.fullName?.charAt(0) || 'A'}
               </div>
               <div className="truncate">
-                <div className="text-xs font-bold text-white truncate">{user?.fullName}</div>
+                <div className="text-xs font-bold text-white truncate group-hover:text-purple-300 transition-colors">{user?.fullName}</div>
                 <div className="text-[10px] text-slate-400 truncate">{user?.email}</div>
               </div>
             </div>
             <Badge variant="admin" size="xs">
               ADMIN
             </Badge>
-          </div>
+          </Link>
 
           <button
             type="button"

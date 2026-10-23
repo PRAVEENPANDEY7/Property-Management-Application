@@ -245,4 +245,58 @@ class AuthSecurityIntegrationTest {
                 .andExpect(header().string("Access-Control-Allow-Origin", "http://localhost:5173"))
                 .andExpect(header().string("Access-Control-Allow-Credentials", "true"));
     }
+
+    @Test
+    @DisplayName("Authenticated user can update full name profile")
+    void shouldUpdateUserProfileWhenAuthenticated() throws Exception {
+        User user = new User("profileuser@haven.com", passwordEncoder.encode("SecretPassword123!"), "Original Name", Role.USER);
+        user = userRepository.save(user);
+
+        String token = jwtTokenProvider.generateToken(user.getId(), user.getEmail(), user.getRole());
+
+        mockMvc.perform(org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put("/api/auth/profile")
+                        .header("Authorization", "Bearer " + token)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("{\"fullName\": \"Updated Full Name\"}"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.success", is(true)))
+                .andExpect(jsonPath("$.data.fullName", is("Updated Full Name")));
+
+        User updatedUser = userRepository.findById(user.getId()).orElseThrow();
+        assertThat(updatedUser.getFullName()).isEqualTo("Updated Full Name");
+    }
+
+    @Test
+    @DisplayName("Authenticated user can change password with correct current password")
+    void shouldChangePasswordWhenCurrentPasswordCorrect() throws Exception {
+        User user = new User("pwduser@haven.com", passwordEncoder.encode("InitialPassword123!"), "Password Test User", Role.ADMIN);
+        user = userRepository.save(user);
+
+        String token = jwtTokenProvider.generateToken(user.getId(), user.getEmail(), user.getRole());
+
+        mockMvc.perform(org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put("/api/auth/change-password")
+                        .header("Authorization", "Bearer " + token)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("{\"currentPassword\": \"InitialPassword123!\", \"newPassword\": \"BrandNewSecurePassword123!\"}"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.success", is(true)));
+
+        User reloaded = userRepository.findById(user.getId()).orElseThrow();
+        assertThat(passwordEncoder.matches("BrandNewSecurePassword123!", reloaded.getPasswordHash())).isTrue();
+    }
+
+    @Test
+    @DisplayName("Reject password change if current password is incorrect")
+    void shouldRejectChangePasswordWhenCurrentPasswordIncorrect() throws Exception {
+        User user = new User("badpwduser@haven.com", passwordEncoder.encode("RealPassword123!"), "User", Role.USER);
+        user = userRepository.save(user);
+
+        String token = jwtTokenProvider.generateToken(user.getId(), user.getEmail(), user.getRole());
+
+        mockMvc.perform(org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put("/api/auth/change-password")
+                        .header("Authorization", "Bearer " + token)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("{\"currentPassword\": \"WrongPassword123!\", \"newPassword\": \"BrandNewSecurePassword123!\"}"))
+                .andExpect(status().isUnauthorized());
+    }
 }

@@ -1,6 +1,8 @@
 package com.property.management.service;
 
+import com.property.management.dto.request.ChangePasswordRequestDto;
 import com.property.management.dto.request.LoginRequestDto;
+import com.property.management.dto.request.UpdateProfileRequestDto;
 import com.property.management.dto.request.UserRegisterRequestDto;
 import com.property.management.dto.response.AuthResponseDto;
 import com.property.management.dto.response.UserResponseDto;
@@ -93,5 +95,37 @@ public class AuthService {
                 .orElseThrow(() -> new ResourceNotFoundException("User", "id", principal.getId()));
 
         return UserResponseDto.fromEntity(user);
+    }
+
+    @Transactional
+    public UserResponseDto updateProfile(UserPrincipal principal, UpdateProfileRequestDto request) {
+        if (principal == null) {
+            throw new BadCredentialsException("User is not authenticated");
+        }
+
+        User user = userRepository.findById(principal.getId())
+                .orElseThrow(() -> new ResourceNotFoundException("User", "id", principal.getId()));
+
+        user.setFullName(request.getFullName().trim());
+        User updated = userRepository.save(user);
+        return UserResponseDto.fromEntity(updated);
+    }
+
+    @Transactional
+    public UserResponseDto changePassword(UserPrincipal principal, ChangePasswordRequestDto request) {
+        if (principal == null) {
+            throw new BadCredentialsException("User is not authenticated");
+        }
+
+        User user = userRepository.findById(principal.getId())
+                .orElseThrow(() -> new ResourceNotFoundException("User", "id", principal.getId()));
+
+        if (!passwordEncoder.matches(request.getCurrentPassword(), user.getPasswordHash())) {
+            throw new BadCredentialsException("Current password is incorrect");
+        }
+
+        user.setPasswordHash(passwordEncoder.encode(request.getNewPassword()));
+        User updated = userRepository.save(user);
+        return UserResponseDto.fromEntity(updated);
     }
 }

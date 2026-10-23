@@ -10,6 +10,7 @@ import {
   AdminPropertyCreatePage,
   AdminPropertyEditPage,
   AdminInquiriesPage,
+  AdminSettingsPage,
   NotFoundPage,
 } from '../pages';
 import ProtectedRoute from './ProtectedRoute';
@@ -82,6 +83,14 @@ export const AppRoutes = () => {
         element={
           <AdminRoute>
             <AdminInquiriesPage />
+          </AdminRoute>
+        }
+      />
+      <Route
+        path="/admin/settings"
+        element={
+          <AdminRoute>
+            <AdminSettingsPage />
           </AdminRoute>
         }
       />

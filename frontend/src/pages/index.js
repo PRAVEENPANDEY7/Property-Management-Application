@@ -7,4 +7,5 @@ export { default as AdminPropertyListPage } from './admin/AdminPropertyListPage'
 export { default as AdminPropertyCreatePage } from './admin/AdminPropertyCreatePage';
 export { default as AdminPropertyEditPage } from './admin/AdminPropertyEditPage';
 export { default as AdminInquiriesPage } from './admin/AdminInquiriesPage';
+export { default as AdminSettingsPage } from './admin/AdminSettingsPage';
 export { default as NotFoundPage } from './NotFoundPage';

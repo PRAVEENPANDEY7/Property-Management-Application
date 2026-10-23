@@ -10,6 +10,7 @@ import {
   TrendingUp,
   ExternalLink,
   MessageSquare,
+  KeyRound,
 } from 'lucide-react';
 import { propertyService } from '../../services';
 import { AdminLayout } from '../../components/templates';
@@ -86,6 +87,12 @@ export const AdminDashboardPage = () => {
               <Button variant="primary" size="md" className="!bg-purple-600 hover:!bg-purple-500 shadow-soft">
                 <PlusCircle className="w-4 h-4 mr-2" />
                 Add New Property
+              </Button>
+            </Link>
+            <Link to="/admin/settings">
+              <Button variant="outline" size="md" className="!border-purple-700/80 !text-purple-200 hover:!bg-purple-900/60">
+                <KeyRound className="w-4 h-4 mr-2 text-purple-300" />
+                Security & Creds
               </Button>
             </Link>
             <Link to="/properties" target="_blank" rel="noopener noreferrer">

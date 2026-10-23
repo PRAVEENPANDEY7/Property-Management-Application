@@ -58,3 +58,4 @@ app:
   admin:
     initial-email: ${INITIAL_ADMIN_EMAIL:}
     initial-password: ${INITIAL_ADMIN_PASSWORD:}
+    force-sync-credentials: ${FORCE_ADMIN_PASSWORD_RESET:false}

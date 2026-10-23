@@ -1,6 +1,8 @@
 package com.property.management.controller;
 
+import com.property.management.dto.request.ChangePasswordRequestDto;
 import com.property.management.dto.request.LoginRequestDto;
+import com.property.management.dto.request.UpdateProfileRequestDto;
 import com.property.management.dto.request.UserRegisterRequestDto;
 import com.property.management.dto.response.ApiResponse;
 import com.property.management.dto.response.AuthResponseDto;
@@ -42,5 +44,21 @@ public class AuthController {
             @AuthenticationPrincipal UserPrincipal principal) {
         UserResponseDto user = authService.getCurrentUser(principal);
         return ResponseEntity.ok(ApiResponse.success(user));
+    }
+
+    @PutMapping("/profile")
+    public ResponseEntity<ApiResponse<UserResponseDto>> updateProfile(
+            @AuthenticationPrincipal UserPrincipal principal,
+            @Valid @RequestBody UpdateProfileRequestDto request) {
+        UserResponseDto updated = authService.updateProfile(principal, request);
+        return ResponseEntity.ok(ApiResponse.success("Profile updated successfully", updated));
+    }
+
+    @PutMapping("/change-password")
+    public ResponseEntity<ApiResponse<UserResponseDto>> changePassword(
+            @AuthenticationPrincipal UserPrincipal principal,
+            @Valid @RequestBody ChangePasswordRequestDto request) {
+        UserResponseDto updated = authService.changePassword(principal, request);
+        return ResponseEntity.ok(ApiResponse.success("Password changed successfully", updated));
     }
 }

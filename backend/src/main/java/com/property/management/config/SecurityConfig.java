@@ -80,8 +80,8 @@ public class SecurityConfig {
                         // Public property browsing, image streaming, and lead inquiry submission
                         .requestMatchers(HttpMethod.GET, "/api/properties", "/api/properties/**").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/properties/*/inquiries").permitAll()
-                        // Explicitly protect current user endpoint
-                        .requestMatchers("/api/auth/me").authenticated()
+                        // Explicitly protect current user profile and credentials endpoints
+                        .requestMatchers("/api/auth/me", "/api/auth/profile", "/api/auth/change-password").authenticated()
                         // Require ADMIN role for admin endpoints
                         .requestMatchers("/api/admin/**").hasRole("ADMIN")
                         // All other endpoints require authentication by default

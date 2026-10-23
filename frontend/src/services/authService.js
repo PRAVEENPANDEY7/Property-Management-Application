@@ -29,6 +29,26 @@ export const authService = {
     const response = await api.get('/auth/me');
     return response.data?.data;
   },
+
+  /**
+   * Update authenticated user's profile details.
+   * @param {{ fullName: string }} data
+   * @returns {Promise<object>}
+   */
+  async updateProfile({ fullName }) {
+    const response = await api.put('/auth/profile', { fullName });
+    return response.data?.data;
+  },
+
+  /**
+   * Change authenticated user's password.
+   * @param {{ currentPassword: string, newPassword: string }} data
+   * @returns {Promise<object>}
+   */
+  async changePassword({ currentPassword, newPassword }) {
+    const response = await api.put('/auth/change-password', { currentPassword, newPassword });
+    return response.data?.data;
+  },
 };
 
 export default authService;
