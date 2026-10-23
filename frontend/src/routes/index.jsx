@@ -1,7 +1,6 @@
 import React from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import {
-  LandingPage,
   LoginPage,
   RegisterPage,
   PropertyListingPage,
@@ -21,10 +20,8 @@ import PublicRoute from './PublicRoute';
 export const AppRoutes = () => {
   return (
     <Routes>
-      {/* Root Luxury Landing Page */}
-      <Route path="/" element={<LandingPage />} />
-
-      {/* Public Routes */}
+      {/* Primary Discovery Marketplace - Immediate Property Access */}
+      <Route path="/" element={<PropertyListingPage />} />
       <Route path="/properties" element={<PropertyListingPage />} />
       <Route path="/properties/:id" element={<PropertyDetailsPage />} />
 

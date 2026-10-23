@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Navigation, X, Sparkles, Building2, SlidersHorizontal } from 'lucide-react';
+import React from 'react';
+import { Navigation, X, Sparkles, SlidersHorizontal } from 'lucide-react';
 import { useProperties, useGeolocation, useAuth } from '../../hooks';
 import { PublicLayout } from '../../components/templates';
 import { SearchBar, CityFilter, Pagination } from '../../components/molecules';
@@ -26,8 +26,6 @@ export const PropertyListingPage = () => {
     setSort,
     retry,
   } = useProperties(detectedCity || '');
-
-  const [sortDropdownOpen, setSortDropdownOpen] = useState(false);
 
   // If user clicks geolocation banner button
   const handleDetectLocation = async () => {
@@ -74,85 +72,32 @@ export const PropertyListingPage = () => {
         </div>
       )}
 
-      {/* Luxury Hero Header Section */}
-      <section className="mb-10 rounded-3xl bg-gradient-to-br from-slate-950 via-slate-900 to-brand-950 text-white p-6 sm:p-10 lg:p-12 shadow-soft-xl relative overflow-hidden border border-brand-900/40">
+      {/* Streamlined Modern Marketplace Hero */}
+      <section className="mb-8 rounded-3xl bg-gradient-to-br from-slate-950 via-slate-900 to-brand-950 text-white p-6 sm:p-8 lg:p-10 shadow-soft-xl relative overflow-hidden border border-brand-900/40">
         {/* Ambient Decorative Glows */}
-        <div className="absolute top-0 right-0 -mr-20 -mt-20 w-80 h-80 rounded-full bg-brand-500/20 blur-3xl pointer-events-none" />
+        <div className="absolute top-0 right-0 -mr-20 -mt-20 w-80 h-80 rounded-full bg-brand-500/15 blur-3xl pointer-events-none" />
         <div className="absolute bottom-0 left-1/3 -mb-20 w-60 h-60 rounded-full bg-gold-500/15 blur-3xl pointer-events-none" />
 
-        <div className="relative z-10 space-y-6">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-gold-500/20 border border-gold-400/40 text-gold-300 text-xs font-bold uppercase tracking-wider">
-              <Sparkles className="w-3.5 h-3.5 text-gold-400" /> Housio &bull; Premier Real Estate Marketplace
-            </div>
-
-            {/* Sort Dropdown */}
-            <div className="flex items-center gap-2">
-              <span className="text-xs text-slate-300 font-medium">Sort by:</span>
-              <select
-                value={`${sortBy}-${sortDir}`}
-                onChange={(e) => {
-                  const [newSort, newDir] = e.target.value.split('-');
-                  setSort(newSort, newDir);
-                }}
-                className="px-3.5 py-2 rounded-xl border border-slate-700 bg-slate-900/90 text-xs font-semibold text-white shadow-soft focus:outline-none focus:ring-2 focus:ring-gold-400 cursor-pointer"
-              >
-                <option value="createdAt-desc" className="bg-slate-900">Newest Listings</option>
-                <option value="price-asc" className="bg-slate-900">Price: Low to High</option>
-                <option value="price-desc" className="bg-slate-900">Price: High to Low</option>
-                <option value="name-asc" className="bg-slate-900">Title: A to Z</option>
-              </select>
-            </div>
+        <div className="relative z-10 space-y-4">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-gold-500/15 border border-gold-400/30 text-gold-300 text-xs font-bold uppercase tracking-wider backdrop-blur-md">
+            <Sparkles className="w-3.5 h-3.5 text-gold-400" /> Housio &bull; Premier Real Estate Marketplace
           </div>
 
-          <div className="space-y-3 max-w-2xl">
-            <h1 className="text-3xl sm:text-5xl font-black tracking-tight text-white leading-tight font-serif">
+          <div className="space-y-2 max-w-2xl">
+            <h1 className="text-2xl sm:text-4xl lg:text-5xl font-black tracking-tight text-white leading-tight font-serif">
               Housio — <span className="text-gold-400">Find Your Exceptional.</span>
             </h1>
-            <p className="text-xs sm:text-base text-slate-300 leading-relaxed font-normal">
-              A premium real estate marketplace for discovering exceptional homes, luxury villas, and exclusive properties. We bring property seekers and verified listings together through a seamless, trusted experience—making it easier to discover a place worth calling home.
+            <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-normal">
+              A premier marketplace for discovering exceptional homes, luxury villas, and exclusive properties through a seamless, trusted experience.
             </p>
           </div>
 
-          {/* Value Pillars */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2 text-xs">
-            <div className="p-3.5 rounded-2xl bg-white/5 backdrop-blur-md border border-white/10 flex items-center gap-3">
-              <div className="w-8 h-8 rounded-xl bg-gold-500/20 text-gold-300 flex items-center justify-center flex-shrink-0">
-                <Building2 className="w-4 h-4" />
-              </div>
-              <div>
-                <div className="font-bold text-white">Discover Better</div>
-                <div className="text-[11px] text-slate-400">Exceptional homes & villas</div>
-              </div>
-            </div>
-
-            <div className="p-3.5 rounded-2xl bg-white/5 backdrop-blur-md border border-white/10 flex items-center gap-3">
-              <div className="w-8 h-8 rounded-xl bg-emerald-500/20 text-emerald-300 flex items-center justify-center flex-shrink-0">
-                <Navigation className="w-4 h-4" />
-              </div>
-              <div>
-                <div className="font-bold text-white">Choose Confidently</div>
-                <div className="text-[11px] text-slate-400">100% verified listings</div>
-              </div>
-            </div>
-
-            <div className="p-3.5 rounded-2xl bg-white/5 backdrop-blur-md border border-white/10 flex items-center gap-3">
-              <div className="w-8 h-8 rounded-xl bg-brand-500/20 text-brand-300 flex items-center justify-center flex-shrink-0">
-                <Sparkles className="w-4 h-4" />
-              </div>
-              <div>
-                <div className="font-bold text-white">Live Exceptionally</div>
-                <div className="text-[11px] text-slate-400">Direct concierge connect</div>
-              </div>
-            </div>
-          </div>
-
           {/* Search Bar Container */}
-          <div className="pt-2">
+          <div className="pt-2 max-w-3xl">
             <SearchBar
               initialValue={search}
               onSearch={setSearch}
-              placeholder="Search by title, city, architectural features, or lifestyle..."
+              placeholder="Search by estate title, city, features, or keywords..."
             />
           </div>
         </div>
@@ -168,9 +113,9 @@ export const PropertyListingPage = () => {
         />
       </section>
 
-      {/* Results Header */}
-      <div className="flex items-center justify-between mb-6 pb-3 border-b border-surface-200 text-xs text-surface-500 font-medium">
-        <div>
+      {/* Results Header with Integrated Sort Controls */}
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 pb-3 border-b border-surface-200 text-xs text-surface-500 font-medium">
+        <div className="flex items-center gap-3">
           {loading ? (
             <span>Searching inventory...</span>
           ) : (
@@ -187,20 +132,40 @@ export const PropertyListingPage = () => {
               )}
             </span>
           )}
+
+          {(city || search) && (
+            <button
+              type="button"
+              onClick={() => {
+                setCity('');
+                setSearch('');
+              }}
+              className="text-xs font-semibold text-brand-600 hover:text-brand-800 underline ml-2"
+            >
+              Reset Filters
+            </button>
+          )}
         </div>
 
-        {(city || search) && (
-          <button
-            type="button"
-            onClick={() => {
-              setCity('');
-              setSearch('');
+        {/* Sort Selector */}
+        <div className="flex items-center gap-2 self-end sm:self-auto">
+          <span className="text-xs text-surface-600 font-medium flex items-center gap-1">
+            <SlidersHorizontal className="w-3.5 h-3.5 text-gold-600" /> Sort:
+          </span>
+          <select
+            value={`${sortBy}-${sortDir}`}
+            onChange={(e) => {
+              const [newSort, newDir] = e.target.value.split('-');
+              setSort(newSort, newDir);
             }}
-            className="text-xs font-semibold text-brand-600 hover:text-brand-800 underline"
+            className="px-3 py-1.5 rounded-xl border border-surface-300 bg-white text-xs font-semibold text-surface-800 shadow-soft focus:outline-none focus:ring-2 focus:ring-brand-500 cursor-pointer"
           >
-            Reset Filters
-          </button>
-        )}
+            <option value="createdAt-desc">Newest Listings</option>
+            <option value="price-asc">Price: Low to High</option>
+            <option value="price-desc">Price: High to Low</option>
+            <option value="name-asc">Title: A to Z</option>
+          </select>
+        </div>
       </div>
 
       {/* Property Cards Grid */}

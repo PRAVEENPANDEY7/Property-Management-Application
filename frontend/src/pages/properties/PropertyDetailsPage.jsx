@@ -16,7 +16,7 @@ import {
 import { usePropertyDetail, useNotification } from '../../hooks';
 import { PublicLayout } from '../../components/templates';
 import { PropertyPrice } from '../../components/molecules';
-import { Button, Badge, Spinner, SpotlightCard, Perspective3DCard } from '../../components/atoms';
+import { Button, Badge, Spinner, SpotlightCard } from '../../components/atoms';
 import { formatCurrency, formatDate, getImageUrl } from '../../utils';
 import { propertyService } from '../../services/propertyService';
 
@@ -84,7 +84,7 @@ export const PropertyDetailsPage = () => {
           <p className="text-sm text-surface-500">
             {error || "The property listing you are looking for doesn't exist or has been removed."}
           </p>
-          <Link to="/properties">
+          <Link to="/">
             <Button variant="primary" size="md">
               <ArrowLeft className="w-4 h-4 mr-2" /> Back to All Listings
             </Button>
@@ -104,7 +104,7 @@ export const PropertyDetailsPage = () => {
       {/* Top Breadcrumb & Actions Bar */}
       <div className="mb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <Link
-          to="/properties"
+          to="/"
           className="inline-flex items-center gap-2 text-xs font-semibold text-surface-500 hover:text-brand-600 transition-colors"
         >
           <ArrowLeft className="w-4 h-4" /> Back to Properties
@@ -123,29 +123,27 @@ export const PropertyDetailsPage = () => {
         <div className="lg:col-span-2 space-y-8">
           {/* Main Gallery Display */}
           <div className="space-y-4">
-            <Perspective3DCard maxRotation={4} scale={1.01}>
-              <div className="relative aspect-[16/10] sm:aspect-[16/9] rounded-3xl overflow-hidden bg-slate-900 shadow-soft-xl border border-surface-200 group">
-                <img
-                  src={activeImageUrl}
-                  alt={property.name}
-                  className="w-full h-full object-cover transition-all duration-300 group-hover:scale-102"
-                />
+            <div className="relative aspect-[16/10] sm:aspect-[16/9] rounded-3xl overflow-hidden bg-slate-900 shadow-soft-xl border border-surface-200 group">
+              <img
+                src={activeImageUrl}
+                alt={property.name}
+                className="w-full h-full object-cover transition-all duration-300 group-hover:scale-102"
+              />
 
-                <div className="absolute top-4 left-4 z-20">
-                  <Badge variant="neutral" size="sm" className="!bg-white/95 !text-surface-900 backdrop-blur-md shadow-soft font-bold">
-                    <MapPin className="w-3.5 h-3.5 mr-1 text-brand-600" />
-                    {property.city}
-                  </Badge>
-                </div>
-
-                {images.length > 0 && (
-                  <div className="absolute bottom-4 right-4 px-3 py-1.5 rounded-xl bg-slate-950/80 text-gold-300 text-xs font-semibold backdrop-blur-sm flex items-center gap-1.5 shadow-soft border border-gold-400/20 z-20">
-                    <ImageIcon className="w-4 h-4 text-gold-400" />
-                    {images.length} {images.length === 1 ? 'photo' : 'photos'}
-                  </div>
-                )}
+              <div className="absolute top-4 left-4 z-20">
+                <Badge variant="neutral" size="sm" className="!bg-white/95 !text-surface-900 backdrop-blur-md shadow-soft font-bold">
+                  <MapPin className="w-3.5 h-3.5 mr-1 text-brand-600" />
+                  {property.city}
+                </Badge>
               </div>
-            </Perspective3DCard>
+
+              {images.length > 0 && (
+                <div className="absolute bottom-4 right-4 px-3 py-1.5 rounded-xl bg-slate-950/80 text-gold-300 text-xs font-semibold backdrop-blur-sm flex items-center gap-1.5 shadow-soft border border-gold-400/20 z-20">
+                  <ImageIcon className="w-4 h-4 text-gold-400" />
+                  {images.length} {images.length === 1 ? 'photo' : 'photos'}
+                </div>
+              )}
+            </div>
 
             {/* Thumbnail Strip */}
             {images.length > 1 && (

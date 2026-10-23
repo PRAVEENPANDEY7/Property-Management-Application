@@ -20,12 +20,12 @@ export const Navbar = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           {/* Housio Official Brand Logo */}
-          <BrandLogo size="md" showTagline={true} />
+          <BrandLogo size="md" showTagline={false} linkTo="/" />
 
           {/* Desktop Navigation Links */}
           <nav className="hidden md:flex items-center gap-6">
             <Link
-              to="/properties"
+              to="/"
               className="text-xs sm:text-sm font-semibold text-surface-700 hover:text-brand-600 transition-colors flex items-center gap-1.5"
             >
               <Compass className="w-4 h-4 text-gold-500" />
@@ -132,7 +132,7 @@ export const Navbar = () => {
       {mobileMenuOpen && (
         <div className="md:hidden border-t border-surface-200 bg-white px-4 pt-3 pb-6 space-y-4 animate-fade-in shadow-soft-lg">
           <Link
-            to="/properties"
+            to="/"
             onClick={() => setMobileMenuOpen(false)}
             className="block py-2 text-sm font-medium text-surface-700 hover:text-brand-600"
           >
