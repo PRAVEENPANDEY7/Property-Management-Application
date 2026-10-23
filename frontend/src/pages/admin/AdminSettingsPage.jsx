@@ -111,11 +111,11 @@ export const AdminSettingsPage = () => {
     <AdminLayout title="Account & Security Settings">
       <div className="max-w-4xl mx-auto space-y-8 animate-fade-in">
         {/* Top Header Card */}
-        <div className="bg-gradient-to-r from-slate-900 via-purple-950 to-slate-900 text-white rounded-3xl p-6 sm:p-8 shadow-soft-xl border border-slate-800">
+        <div className="bg-gradient-to-r from-slate-950 via-brand-950 to-slate-900 text-white rounded-3xl p-6 sm:p-8 shadow-soft-xl border border-brand-800/40">
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
             <div className="space-y-1">
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-purple-500/20 text-purple-300 text-xs font-semibold border border-purple-500/30">
-                <ShieldCheck className="w-3.5 h-3.5 text-purple-400" />
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-gold-500/20 text-gold-300 text-xs font-semibold border border-gold-500/30">
+                <ShieldCheck className="w-3.5 h-3.5 text-gold-400" />
                 Administrative Access Control
               </div>
               <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight">
@@ -125,7 +125,7 @@ export const AdminSettingsPage = () => {
                 Manage your administrator credentials, update security keys, and inspect deployment status.
               </p>
             </div>
-            <Badge variant="admin" size="md" className="!bg-purple-600 !text-white shadow-soft">
+            <Badge variant="admin" size="md" className="!bg-gold-500/20 !text-gold-300 !border-gold-500/40 shadow-soft">
               Active Role: {user?.role || 'ADMIN'}
             </Badge>
           </div>
@@ -135,7 +135,7 @@ export const AdminSettingsPage = () => {
           {/* Card 1: Admin Profile Details */}
           <div className="bg-white rounded-3xl p-6 sm:p-8 border border-surface-200 shadow-soft space-y-6">
             <div className="flex items-center gap-3 pb-4 border-b border-surface-100">
-              <div className="w-10 h-10 rounded-2xl bg-purple-50 text-purple-700 flex items-center justify-center flex-shrink-0">
+              <div className="w-10 h-10 rounded-2xl bg-brand-50 text-brand-700 flex items-center justify-center flex-shrink-0">
                 <User className="w-5 h-5" />
               </div>
               <div>
@@ -179,7 +179,7 @@ export const AdminSettingsPage = () => {
                   onChange={(e) => setFullName(e.target.value)}
                   placeholder="e.g. System Administrator"
                   required
-                  className="w-full px-4 py-2.5 rounded-xl border border-surface-200 bg-white text-surface-900 text-xs font-medium focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all"
+                  className="w-full px-4 py-2.5 rounded-xl border border-surface-200 bg-white text-surface-900 text-xs font-medium focus:outline-none focus:ring-2 focus:ring-brand-500 transition-all"
                 />
               </div>
 
@@ -189,7 +189,7 @@ export const AdminSettingsPage = () => {
                   variant="primary"
                   size="md"
                   isLoading={profileSaving}
-                  className="w-full !bg-purple-600 hover:!bg-purple-700 shadow-soft"
+                  className="w-full !bg-brand-600 hover:!bg-brand-700 shadow-soft"
                 >
                   <Save className="w-4 h-4 mr-2" />
                   Save Profile Changes
@@ -229,7 +229,7 @@ export const AdminSettingsPage = () => {
                     onChange={(e) => setCurrentPassword(e.target.value)}
                     placeholder="Enter existing password"
                     required
-                    className="w-full px-4 py-2.5 rounded-xl border border-surface-200 bg-white text-surface-900 text-xs font-medium focus:outline-none focus:ring-2 focus:ring-purple-500 pr-10"
+                    className="w-full px-4 py-2.5 rounded-xl border border-surface-200 bg-white text-surface-900 text-xs font-medium focus:outline-none focus:ring-2 focus:ring-brand-500 pr-10"
                   />
                   <button
                     type="button"
@@ -253,7 +253,7 @@ export const AdminSettingsPage = () => {
                     onChange={(e) => setNewPassword(e.target.value)}
                     placeholder="Min. 8 characters"
                     required
-                    className="w-full px-4 py-2.5 rounded-xl border border-surface-200 bg-white text-surface-900 text-xs font-medium focus:outline-none focus:ring-2 focus:ring-purple-500 pr-10"
+                    className="w-full px-4 py-2.5 rounded-xl border border-surface-200 bg-white text-surface-900 text-xs font-medium focus:outline-none focus:ring-2 focus:ring-brand-500 pr-10"
                   />
                   <button
                     type="button"
@@ -300,7 +300,7 @@ export const AdminSettingsPage = () => {
                     onChange={(e) => setConfirmPassword(e.target.value)}
                     placeholder="Re-enter new password"
                     required
-                    className="w-full px-4 py-2.5 rounded-xl border border-surface-200 bg-white text-surface-900 text-xs font-medium focus:outline-none focus:ring-2 focus:ring-purple-500 pr-10"
+                    className="w-full px-4 py-2.5 rounded-xl border border-surface-200 bg-white text-surface-900 text-xs font-medium focus:outline-none focus:ring-2 focus:ring-brand-500 pr-10"
                   />
                   <button
                     type="button"
@@ -329,9 +329,9 @@ export const AdminSettingsPage = () => {
         </div>
 
         {/* Card 3: Cloud Deployment & Reset Guide */}
-        <div className="bg-gradient-to-r from-purple-50/60 to-indigo-50/60 rounded-3xl p-6 sm:p-8 border border-purple-200/60 shadow-soft space-y-4">
+        <div className="bg-gradient-to-r from-brand-50/60 to-gold-50/40 rounded-3xl p-6 sm:p-8 border border-brand-200/60 shadow-soft space-y-4">
           <div className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-xl bg-purple-600 text-white flex items-center justify-center flex-shrink-0 shadow-soft">
+            <div className="w-9 h-9 rounded-xl bg-brand-600 text-white flex items-center justify-center flex-shrink-0 shadow-soft">
               <Server className="w-4 h-4" />
             </div>
             <div>
@@ -356,10 +356,10 @@ export const AdminSettingsPage = () => {
 
             <div className="bg-white/80 backdrop-blur-sm p-4 rounded-2xl border border-surface-200 space-y-1.5">
               <div className="font-bold text-surface-900 flex items-center gap-1.5">
-                <Sparkles className="w-4 h-4 text-purple-600" /> Render Environment Vars
+                <Sparkles className="w-4 h-4 text-gold-600" /> Render Environment Vars
               </div>
               <p className="text-[11px] leading-relaxed">
-                In Render Dashboard, you can configure <code className="bg-surface-100 px-1 py-0.5 rounded text-purple-700">INITIAL_ADMIN_EMAIL</code> and <code className="bg-surface-100 px-1 py-0.5 rounded text-purple-700">INITIAL_ADMIN_PASSWORD</code>.
+                In Render Dashboard, you can configure <code className="bg-surface-100 px-1 py-0.5 rounded text-brand-800 font-bold">INITIAL_ADMIN_EMAIL</code> and <code className="bg-surface-100 px-1 py-0.5 rounded text-brand-800 font-bold">INITIAL_ADMIN_PASSWORD</code>.
               </p>
             </div>
 
@@ -368,7 +368,7 @@ export const AdminSettingsPage = () => {
                 <ShieldCheck className="w-4 h-4 text-brand-600" /> Emergency Force Sync
               </div>
               <p className="text-[11px] leading-relaxed">
-                If you ever get locked out, set <code className="bg-surface-100 px-1 py-0.5 rounded text-purple-700">FORCE_ADMIN_PASSWORD_RESET=true</code> in Render. The backend will automatically reset the admin password on restart!
+                If you ever get locked out, set <code className="bg-surface-100 px-1 py-0.5 rounded text-brand-800 font-bold">FORCE_ADMIN_PASSWORD_RESET=true</code> in Render. The backend will automatically reset the admin password on restart!
               </p>
             </div>
           </div>

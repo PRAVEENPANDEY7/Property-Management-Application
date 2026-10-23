@@ -15,7 +15,8 @@ export const Badge = ({
     success: 'bg-emerald-50 text-emerald-700 border border-emerald-200/60',
     warning: 'bg-amber-50 text-amber-700 border border-amber-200/60',
     danger: 'bg-rose-50 text-rose-700 border border-rose-200/60',
-    admin: 'bg-purple-50 text-purple-700 border border-purple-200/60 font-semibold',
+    admin: 'bg-gold-50 text-gold-800 border border-gold-300/60 font-semibold',
+    gold: 'bg-gold-500/10 text-gold-700 border border-gold-400/40 font-semibold',
   };
 
   const sizes = {

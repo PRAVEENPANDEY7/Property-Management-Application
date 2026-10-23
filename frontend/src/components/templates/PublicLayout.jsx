@@ -1,8 +1,9 @@
 import React from 'react';
 import { Navbar } from '../organisms';
 import { ToastContainer } from '../molecules';
-import { Building2, Heart } from 'lucide-react';
+import { Heart } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { BrandLogo } from '../atoms';
 
 export const PublicLayout = ({ children }) => {
   return (
@@ -17,17 +18,13 @@ export const PublicLayout = ({ children }) => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
             <div className="space-y-3">
-              <div className="flex items-center gap-2">
-                <div className="h-8 w-8 rounded-lg bg-brand-600 text-white flex items-center justify-center">
-                  <Building2 className="w-4 h-4" />
-                </div>
-                <span className="font-extrabold text-lg text-surface-900 tracking-tight">
-                  Haven<span className="text-brand-600">Estate</span>
-                </span>
-              </div>
-              <p className="text-xs text-surface-500 leading-relaxed">
-                Premium property management and curated real estate marketplace. Verified architectural listings with modern security and transparent records.
+              <BrandLogo size="md" showTagline={true} />
+              <p className="text-xs text-surface-500 leading-relaxed pt-1">
+                Housio is a premium real estate marketplace for discovering exceptional homes, luxury villas, and exclusive properties. We bring property seekers and verified listings together through a seamless, trusted experience.
               </p>
+              <div className="text-[11px] font-bold text-gold-600 tracking-wide uppercase">
+                Discover better &bull; Choose confidently &bull; Live exceptionally.
+              </div>
             </div>
 
             <div>
@@ -60,7 +57,7 @@ export const PublicLayout = ({ children }) => {
 
           <div className="pt-8 border-t border-surface-100 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-surface-400">
             <div>
-              HavenEstate &copy; 2026. All rights reserved.
+              Housio &copy; 2026. All rights reserved.
             </div>
             <div className="flex items-center gap-1">
               Engineered with <Heart className="w-3.5 h-3.5 text-rose-500 fill-current" /> for Enterprise Scalability

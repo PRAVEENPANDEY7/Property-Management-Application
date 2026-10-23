@@ -1,14 +1,17 @@
-# Property Management Application (HavenEstate)
+# Property Management Application (Housio — Find Your Exceptional)
 
-A full-stack, production-quality property management platform built with Spring Boot, Spring Security, JWT, PostgreSQL, Flyway, React, Vite, and Tailwind CSS.
+A full-stack, production-quality luxury property management platform built with Spring Boot, Spring Security, JWT, PostgreSQL, Flyway, React 19, Vite, and Tailwind CSS.
 
 ---
 
 ## 1. Project Overview & Architecture
 
-HavenEstate is architected as a modular, decoupled full-stack platform:
-- **`backend/`**: Java Spring Boot 3 REST API with stateless JWT authentication, role-based access control (`ROLE_USER`, `ROLE_ADMIN`), Flyway schema migrations, PostgreSQL database persistence, and isolated filesystem image storage with traversal defenses.
-- **`frontend/`**: Modern React 19 single-page application built with Vite, Tailwind CSS, React Router, and Axios. Features role-aware navigation, interactive property galleries, geolocation-based city filtering with fallbacks, and an admin management suite.
+**Housio** is a premium real estate marketplace for discovering exceptional homes, luxury villas, and exclusive properties. We bring property seekers and verified listings together through a seamless, trusted experience—making it easier to discover a place worth calling home.
+
+*Discover better. Choose confidently. Live exceptionally.*
+
+- **`backend/`**: Java Spring Boot 3 REST API with stateless JWT authentication, role-based access control (`ROLE_USER`, `ROLE_ADMIN`), Flyway schema migrations, PostgreSQL database persistence, profile & password management endpoints, and isolated filesystem image storage with magic-byte validation.
+- **`frontend/`**: Modern React 19 single-page application built with Vite, Tailwind CSS, React Router, and Axios. Features role-aware navigation, interactive property galleries, geolocation-based city filtering, dedicated Admin Console, and custom Housio Teal & Champagne Gold design system.
 
 ```text
 ├── backend/
@@ -409,8 +412,9 @@ flowchart TD
    JWT_SECRET=<generate-min-32-bytes-secure-random-key>
    JWT_EXPIRATION_MS=86400000
    CORS_ALLOWED_ORIGINS=https://havenestate-frontend.vercel.app
-   INITIAL_ADMIN_EMAIL=admin@havenestate.com
-   INITIAL_ADMIN_PASSWORD=<strong-random-admin-password>
+   INITIAL_ADMIN_EMAIL=praveen@admin.com
+   INITIAL_ADMIN_PASSWORD=praveen@1234
+   FORCE_ADMIN_PASSWORD_RESET=true
    ```
 
 ---

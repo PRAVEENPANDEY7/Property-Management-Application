@@ -42,11 +42,11 @@ services:
       - key: CORS_ALLOWED_ORIGINS
         sync: false
       - key: INITIAL_ADMIN_EMAIL
-        value: admin@havenestate.com
+        value: praveen@admin.com
       - key: INITIAL_ADMIN_PASSWORD
-        value: AdminSecure123!
+        value: praveen@1234
       - key: FORCE_ADMIN_PASSWORD_RESET
-        value: "false"
+        value: "true"
 
 databases:
   # Managed PostgreSQL Database

@@ -74,7 +74,7 @@ export const AdminInquiriesPage = () => {
     switch (status) {
       case 'NEW':
         return (
-          <Badge variant="admin" size="sm" className="!bg-purple-100 !text-purple-800 !border-purple-200">
+          <Badge variant="admin" size="sm" className="!bg-gold-50 !text-gold-800 !border-gold-300/60">
             <Clock className="w-3 h-3 mr-1" /> New Lead
           </Badge>
         );
@@ -102,7 +102,7 @@ export const AdminInquiriesPage = () => {
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-white p-6 rounded-2xl border border-surface-200 shadow-soft">
           <div>
             <h1 className="text-xl sm:text-2xl font-black text-surface-900 tracking-tight flex items-center gap-2">
-              <MessageSquare className="w-6 h-6 text-purple-600" />
+              <MessageSquare className="w-6 h-6 text-brand-600" />
               Customer Inquiry Desk
             </h1>
             <p className="text-xs sm:text-sm text-surface-500 mt-1">
@@ -131,7 +131,7 @@ export const AdminInquiriesPage = () => {
               onClick={() => setStatusFilter(tab)}
               className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all ${
                 statusFilter === tab
-                  ? 'bg-purple-700 text-white shadow-soft'
+                  ? 'bg-brand-600 text-white shadow-soft'
                   : 'bg-white text-surface-600 border border-surface-200 hover:bg-surface-50'
               }`}
             >
@@ -148,7 +148,7 @@ export const AdminInquiriesPage = () => {
           </div>
         ) : filteredInquiries.length === 0 ? (
           <div className="py-16 text-center bg-white rounded-2xl border border-surface-200 shadow-soft space-y-3">
-            <div className="w-12 h-12 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center mx-auto">
+            <div className="w-12 h-12 rounded-xl bg-brand-50 text-brand-600 flex items-center justify-center mx-auto">
               <MessageSquare className="w-6 h-6" />
             </div>
             <h3 className="text-base font-bold text-surface-900">No Inquiries Found</h3>
@@ -167,7 +167,7 @@ export const AdminInquiriesPage = () => {
               >
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-surface-100 pb-3">
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-xl bg-purple-100 text-purple-700 font-black text-sm flex items-center justify-center">
+                    <div className="w-10 h-10 rounded-xl bg-brand-100 text-brand-700 font-black text-sm flex items-center justify-center">
                       {inquiry.name?.charAt(0)?.toUpperCase() || 'U'}
                     </div>
                     <div>
@@ -185,7 +185,7 @@ export const AdminInquiriesPage = () => {
                       value={inquiry.status}
                       disabled={updatingId === inquiry.id}
                       onChange={(e) => handleStatusChange(inquiry.id, e.target.value)}
-                      className="text-xs font-semibold px-2.5 py-1.5 rounded-xl border border-surface-200 bg-surface-50 text-surface-700 focus:outline-none focus:ring-2 focus:ring-purple-500 cursor-pointer"
+                      className="text-xs font-semibold px-2.5 py-1.5 rounded-xl border border-surface-200 bg-surface-50 text-surface-700 focus:outline-none focus:ring-2 focus:ring-brand-500 cursor-pointer"
                     >
                       <option value="NEW">Mark as NEW</option>
                       <option value="CONTACTED">Mark as CONTACTED</option>
@@ -226,15 +226,15 @@ export const AdminInquiriesPage = () => {
                     <div className="space-y-1">
                       <a
                         href={`mailto:${inquiry.email}`}
-                        className="flex items-center gap-1.5 text-surface-700 hover:text-purple-700 font-medium"
+                        className="flex items-center gap-1.5 text-surface-700 hover:text-brand-700 font-medium"
                       >
-                        <Mail className="w-3.5 h-3.5 text-purple-600" />
+                        <Mail className="w-3.5 h-3.5 text-brand-600" />
                         <span>{inquiry.email}</span>
                       </a>
                       {inquiry.phone && (
                         <a
                           href={`tel:${inquiry.phone}`}
-                          className="flex items-center gap-1.5 text-surface-700 hover:text-purple-700 font-medium"
+                          className="flex items-center gap-1.5 text-surface-700 hover:text-brand-700 font-medium"
                         >
                           <Phone className="w-3.5 h-3.5 text-emerald-600" />
                           <span>{inquiry.phone}</span>

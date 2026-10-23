@@ -69,29 +69,29 @@ export const AdminDashboardPage = () => {
     <AdminLayout title="Dashboard Overview">
       <div className="space-y-8">
         {/* Top Header Hero */}
-        <div className="bg-gradient-to-r from-purple-900 to-slate-900 text-white rounded-3xl p-6 sm:p-8 shadow-soft-xl flex flex-col sm:flex-row sm:items-center justify-between gap-6">
+        <div className="bg-gradient-to-r from-slate-950 via-brand-950 to-slate-900 text-white rounded-3xl p-6 sm:p-8 shadow-soft-xl border border-brand-800/40 flex flex-col sm:flex-row sm:items-center justify-between gap-6">
           <div className="space-y-2">
-            <Badge variant="admin" size="sm" className="!bg-purple-800/80 !text-purple-200 !border-purple-600/60">
-              Administrative Control Center
+            <Badge variant="admin" size="sm" className="!bg-gold-500/20 !text-gold-300 !border-gold-500/40">
+              Housio Operations Center
             </Badge>
             <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight">
-              Property Portfolio Manager
+              Housio Property Portfolio
             </h1>
             <p className="text-xs sm:text-sm text-slate-300 max-w-lg">
-              Manage live public listings, process multi-image uploads with magic-byte security, and maintain real-time database persistence.
+              Manage live Housio properties, process multi-image uploads with magic-byte security, and oversee customer inquiries in real time.
             </p>
           </div>
 
           <div className="flex flex-wrap items-center gap-3">
             <Link to="/admin/properties/new">
-              <Button variant="primary" size="md" className="!bg-purple-600 hover:!bg-purple-500 shadow-soft">
+              <Button variant="primary" size="md" className="!bg-brand-600 hover:!bg-brand-500 shadow-soft font-bold">
                 <PlusCircle className="w-4 h-4 mr-2" />
                 Add New Property
               </Button>
             </Link>
             <Link to="/admin/settings">
-              <Button variant="outline" size="md" className="!border-purple-700/80 !text-purple-200 hover:!bg-purple-900/60">
-                <KeyRound className="w-4 h-4 mr-2 text-purple-300" />
+              <Button variant="outline" size="md" className="!border-gold-500/40 !text-gold-300 hover:!bg-gold-500/10">
+                <KeyRound className="w-4 h-4 mr-2 text-gold-400" />
                 Security & Creds
               </Button>
             </Link>
@@ -110,7 +110,7 @@ export const AdminDashboardPage = () => {
           <div className="bg-white p-6 rounded-2xl border border-surface-200 shadow-soft space-y-3">
             <div className="flex items-center justify-between">
               <span className="text-xs font-bold uppercase tracking-wider text-surface-400">Total Listings</span>
-              <div className="w-9 h-9 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center">
+              <div className="w-9 h-9 rounded-xl bg-brand-50 text-brand-600 flex items-center justify-center">
                 <Building className="w-5 h-5" />
               </div>
             </div>
@@ -126,7 +126,7 @@ export const AdminDashboardPage = () => {
           <div className="bg-white p-6 rounded-2xl border border-surface-200 shadow-soft space-y-3">
             <div className="flex items-center justify-between">
               <span className="text-xs font-bold uppercase tracking-wider text-surface-400">Portfolio Value</span>
-              <div className="w-9 h-9 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center">
+              <div className="w-9 h-9 rounded-xl bg-gold-50 text-gold-600 flex items-center justify-center">
                 <DollarSign className="w-5 h-5" />
               </div>
             </div>
@@ -157,13 +157,13 @@ export const AdminDashboardPage = () => {
           {/* Customer Inquiries / Leads */}
           <Link
             to="/admin/inquiries"
-            className="bg-white p-6 rounded-2xl border border-surface-200 shadow-soft hover:shadow-soft-lg hover:border-purple-300 transition-all space-y-3 block group"
+            className="bg-white p-6 rounded-2xl border border-surface-200 shadow-soft hover:shadow-soft-lg hover:border-gold-400/50 transition-all space-y-3 block group"
           >
             <div className="flex items-center justify-between">
-              <span className="text-xs font-bold uppercase tracking-wider text-surface-400 group-hover:text-purple-600 transition-colors">
+              <span className="text-xs font-bold uppercase tracking-wider text-surface-400 group-hover:text-gold-600 transition-colors">
                 Customer Leads
               </span>
-              <div className="w-9 h-9 rounded-xl bg-purple-50 text-purple-600 group-hover:bg-purple-600 group-hover:text-white transition-colors flex items-center justify-center">
+              <div className="w-9 h-9 rounded-xl bg-gold-50 text-gold-600 group-hover:bg-gold-600 group-hover:text-white transition-colors flex items-center justify-center">
                 <MessageSquare className="w-5 h-5" />
               </div>
             </div>
@@ -171,12 +171,12 @@ export const AdminDashboardPage = () => {
               <div className="text-2xl font-black text-surface-900 flex items-center gap-2">
                 <span>{loading ? '—' : stats.newInquiries}</span>
                 {stats.newInquiries > 0 && (
-                  <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-purple-100 text-purple-700">
+                  <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-gold-100 text-gold-800">
                     NEW
                   </span>
                 )}
               </div>
-              <div className="text-[11px] text-purple-600 font-semibold mt-1 flex items-center gap-1">
+              <div className="text-[11px] text-gold-600 font-semibold mt-1 flex items-center gap-1">
                 <span>Manage inquiries</span>
                 <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
               </div>
@@ -193,7 +193,7 @@ export const AdminDashboardPage = () => {
             </div>
             <Link
               to="/admin/properties"
-              className="text-xs font-semibold text-purple-700 hover:text-purple-900 flex items-center gap-1"
+              className="text-xs font-semibold text-brand-700 hover:text-brand-900 flex items-center gap-1"
             >
               <span>View All Properties</span>
               <ArrowRight className="w-3.5 h-3.5" />
@@ -222,7 +222,7 @@ export const AdminDashboardPage = () => {
                         className="w-12 h-10 object-cover rounded-lg border border-surface-200 bg-surface-100 flex-shrink-0"
                       />
                       <div>
-                        <div className="font-bold text-sm text-surface-900 hover:text-purple-700">
+                        <div className="font-bold text-sm text-surface-900 hover:text-brand-700">
                           <Link to={`/admin/properties/${prop.id}/edit`}>{prop.name}</Link>
                         </div>
                         <div className="text-xs text-surface-400">
@@ -237,7 +237,7 @@ export const AdminDashboardPage = () => {
                       </span>
                       <Link
                         to={`/admin/properties/${prop.id}/edit`}
-                        className="text-xs font-semibold text-purple-700 hover:text-purple-900"
+                        className="text-xs font-semibold text-brand-700 hover:text-brand-900"
                       >
                         Edit
                       </Link>

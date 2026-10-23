@@ -55,9 +55,9 @@ export const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(false);
 
   // Helper buttons for testing demo accounts
-  const fillDemoAdmin = (chosenEmail = 'admin@havenestate.com') => {
+  const fillDemoAdmin = (chosenEmail = 'praveen@admin.com') => {
     setEmail(chosenEmail);
-    setPassword('AdminSecure123!');
+    setPassword('praveen@1234');
     setErrors({});
     setSubmitError(null);
   };
@@ -157,8 +157,8 @@ export const LoginPage = () => {
           <div className="grid grid-cols-2 gap-2">
             <button
               type="button"
-              onClick={() => fillDemoAdmin('admin@havenestate.com')}
-              className="py-1.5 px-2.5 text-xs font-semibold rounded-xl border border-purple-200 bg-purple-50/70 text-purple-700 hover:bg-purple-100/70 transition-colors"
+              onClick={() => fillDemoAdmin('praveen@admin.com')}
+              className="py-1.5 px-2.5 text-xs font-semibold rounded-xl border border-gold-300/60 bg-gold-50/70 text-gold-800 hover:bg-gold-100/70 transition-colors"
             >
               Fill Admin Creds
             </button>

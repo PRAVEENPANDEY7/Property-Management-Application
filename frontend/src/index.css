@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -8,8 +8,8 @@
   html {
     font-family: 'Plus Jakarta Sans', Inter, system-ui, sans-serif;
     scroll-behavior: smooth;
-    color: #0f172a;
-    background-color: #f8fafc;
+    color: #0e1716;
+    background-color: #f8faf9;
   }
 
   body {
@@ -22,14 +22,28 @@
 
 @layer utilities {
   .glass-card {
-    background: rgba(255, 255, 255, 0.85);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(226, 232, 240, 0.8);
+    background: rgba(255, 255, 255, 0.88);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(226, 233, 231, 0.85);
   }
 
+  .glass-dark {
+    background: rgba(7, 29, 27, 0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(197, 155, 82, 0.2);
+  }
+
+  /* Housio Signature Logo Gradient */
   .text-gradient {
-    background: linear-gradient(135deg, #4f46e5 0%, #312e81 100%);
+    background: linear-gradient(135deg, #116e65 0%, #c59b52 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .text-gold-gradient {
+    background: linear-gradient(135deg, #e1cea3 0%, #c59b52 60%, #8e6333 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }

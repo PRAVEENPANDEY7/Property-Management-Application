@@ -54,9 +54,9 @@ app:
   cors:
     allowed-origins: ${CORS_ALLOWED_ORIGINS:https://*.vercel.app,http://localhost:5173,http://localhost:3000}
   admin:
-    initial-email: ${INITIAL_ADMIN_EMAIL:admin@havenestate.com}
-    initial-password: ${INITIAL_ADMIN_PASSWORD:AdminSecure123!}
-    force-sync-credentials: ${FORCE_ADMIN_PASSWORD_RESET:false}
+    initial-email: ${INITIAL_ADMIN_EMAIL:praveen@admin.com}
+    initial-password: ${INITIAL_ADMIN_PASSWORD:praveen@1234}
+    force-sync-credentials: ${FORCE_ADMIN_PASSWORD_RESET:true}
 
 logging:
   level:

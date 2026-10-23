@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Building2, Shield, User, LogOut, Menu, X, Navigation, Compass } from 'lucide-react';
 import { useAuth, useGeolocation } from '../../hooks';
-import { Button, Badge } from '../atoms';
+import { Button, Badge, BrandLogo } from '../atoms';
 
 export const Navbar = () => {
   const { user, isAuthenticated, isAdmin, logout } = useAuth();
@@ -16,18 +16,11 @@ export const Navbar = () => {
   };
 
   return (
-    <header className="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-surface-200">
+    <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-surface-200 shadow-soft-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-18">
-          {/* Brand Logo */}
-          <Link to="/properties" className="flex items-center gap-2.5 group">
-            <div className="h-10 w-10 rounded-xl bg-brand-600 text-white flex items-center justify-center shadow-soft group-hover:bg-brand-700 transition-colors">
-              <Building2 className="w-5 h-5" />
-            </div>
-            <span className="font-extrabold text-xl tracking-tight text-surface-900">
-              Haven<span className="text-brand-600">Estate</span>
-            </span>
-          </Link>
+        <div className="flex items-center justify-between h-20">
+          {/* Housio Official Brand Logo */}
+          <BrandLogo size="md" showTagline={true} />
 
           {/* Desktop Navigation Links */}
           <nav className="hidden md:flex items-center gap-6">
@@ -72,8 +65,8 @@ export const Navbar = () => {
               <div className="flex items-center gap-3">
                 {isAdmin && (
                   <Link to="/admin">
-                    <Button variant="secondary" size="sm" className="!rounded-xl border border-surface-200">
-                      <Shield className="w-4 h-4 mr-1.5 text-purple-600" />
+                    <Button variant="secondary" size="sm" className="!rounded-xl border border-surface-200 hover:border-gold-300">
+                      <Shield className="w-4 h-4 mr-1.5 text-gold-600" />
                       Admin Dashboard
                     </Button>
                   </Link>
@@ -194,9 +187,9 @@ export const Navbar = () => {
                   <Link
                     to="/admin"
                     onClick={() => setMobileMenuOpen(false)}
-                    className="flex items-center gap-2 w-full p-2.5 rounded-xl bg-purple-50 text-purple-700 text-xs font-semibold"
+                    className="flex items-center gap-2 w-full p-2.5 rounded-xl bg-gold-50 text-gold-800 border border-gold-200/60 text-xs font-semibold"
                   >
-                    <Shield className="w-4 h-4" /> Admin Dashboard
+                    <Shield className="w-4 h-4 text-gold-600" /> Admin Dashboard
                   </Link>
                 )}
 

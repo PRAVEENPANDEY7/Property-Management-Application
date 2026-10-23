@@ -70,15 +70,13 @@ export const AdminLayout = ({ children, title = 'Administration' }) => {
   };
 
   return (
-    <div className="min-h-screen bg-surface-50 flex flex-col md:flex-row selection:bg-purple-600 selection:text-white">
+    <div className="min-h-screen bg-surface-50 flex flex-col md:flex-row selection:bg-brand-600 selection:text-white">
       {/* Mobile Top Bar */}
       <div className="md:hidden bg-white border-b border-surface-200 px-4 py-3 flex items-center justify-between sticky top-0 z-40">
         <div className="flex items-center gap-2">
-          <div className="h-8 w-8 rounded-lg bg-purple-700 text-white flex items-center justify-center">
-            <Shield className="w-4 h-4" />
-          </div>
+          <img src="/housio-logo.png" alt="Housio Logo" className="h-7 w-auto object-contain" />
           <span className="font-extrabold text-base text-surface-900">
-            Haven<span className="text-purple-700">Admin</span>
+            Hous<span className="text-gold-600">io</span> <span className="text-brand-600 font-semibold text-xs ml-1">Admin</span>
           </span>
         </div>
         <button
@@ -100,12 +98,12 @@ export const AdminLayout = ({ children, title = 'Administration' }) => {
         {/* Brand Header */}
         <div className="p-6 border-b border-slate-800 flex items-center justify-between">
           <Link to="/admin" className="flex items-center gap-2.5">
-            <div className="h-9 w-9 rounded-xl bg-purple-600 text-white flex items-center justify-center shadow-soft">
-              <Shield className="w-5 h-5" />
-            </div>
+            <img src="/housio-logo.png" alt="Housio Logo" className="h-9 w-auto object-contain drop-shadow" />
             <div>
-              <div className="font-extrabold text-lg text-white tracking-tight">HavenEstate</div>
-              <div className="text-[10px] text-purple-400 font-bold tracking-widest uppercase">
+              <div className="font-extrabold text-lg text-white tracking-tight">
+                Hous<span className="text-gold-400 font-bold">io</span>
+              </div>
+              <div className="text-[10px] text-gold-400 font-bold tracking-widest uppercase">
                 Admin Console
               </div>
             </div>
@@ -132,7 +130,7 @@ export const AdminLayout = ({ children, title = 'Administration' }) => {
                 onClick={() => setSidebarOpen(false)}
                 className={`flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-semibold transition-all ${
                   active
-                    ? 'bg-purple-600 text-white shadow-soft'
+                    ? 'bg-gradient-to-r from-brand-600 to-brand-700 text-white shadow-soft font-bold'
                     : 'text-slate-400 hover:text-white hover:bg-slate-800/80'
                 }`}
               >
@@ -165,11 +163,11 @@ export const AdminLayout = ({ children, title = 'Administration' }) => {
             title="Manage Admin Profile & Password"
           >
             <div className="flex items-center gap-2 overflow-hidden">
-              <div className="w-8 h-8 rounded-full bg-purple-900/60 text-purple-300 border border-purple-700/60 font-bold flex items-center justify-center text-xs flex-shrink-0 group-hover:scale-105 transition-transform">
+              <div className="w-8 h-8 rounded-full bg-brand-900/80 text-gold-300 border border-gold-500/40 font-bold flex items-center justify-center text-xs flex-shrink-0 group-hover:scale-105 transition-transform">
                 {user?.fullName?.charAt(0) || 'A'}
               </div>
               <div className="truncate">
-                <div className="text-xs font-bold text-white truncate group-hover:text-purple-300 transition-colors">{user?.fullName}</div>
+                <div className="text-xs font-bold text-white truncate group-hover:text-gold-300 transition-colors">{user?.fullName}</div>
                 <div className="text-[10px] text-slate-400 truncate">{user?.email}</div>
               </div>
             </div>

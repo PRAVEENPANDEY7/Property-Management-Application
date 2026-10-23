@@ -63,7 +63,7 @@ export const RegisterPage = () => {
   return (
     <AuthLayout
       title="Create an Account"
-      subtitle="Join HavenEstate to discover luxury homes, villas, and verified estates."
+      subtitle="Join Housio to discover exceptional homes, luxury villas, and exclusive properties."
     >
       <form onSubmit={handleSubmit} className="space-y-4">
         {submitError && (

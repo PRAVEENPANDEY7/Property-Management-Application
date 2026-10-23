@@ -51,7 +51,7 @@ export const AdminPropertyListPage = () => {
           </div>
 
           <Link to="/admin/properties/new">
-            <Button variant="primary" size="md" className="!bg-purple-600 hover:!bg-purple-500 shadow-soft">
+            <Button variant="primary" size="md" className="!bg-brand-600 hover:!bg-brand-500 shadow-soft font-bold">
               <PlusCircle className="w-4 h-4 mr-2" />
               Create Property
             </Button>
@@ -67,7 +67,7 @@ export const AdminPropertyListPage = () => {
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search by title, location..."
-              className="w-full pl-10 pr-4 py-2 rounded-xl border border-surface-200 text-xs text-surface-900 placeholder:text-surface-400 focus:outline-none focus:ring-2 focus:ring-purple-500"
+              className="w-full pl-10 pr-4 py-2 rounded-xl border border-surface-200 text-xs text-surface-900 placeholder:text-surface-400 focus:outline-none focus:ring-2 focus:ring-brand-500"
             />
           </div>
 
@@ -78,7 +78,7 @@ export const AdminPropertyListPage = () => {
               value={city}
               onChange={(e) => setCity(e.target.value)}
               placeholder="Filter by city..."
-              className="w-full pl-10 pr-8 py-2 rounded-xl border border-surface-200 text-xs text-surface-900 placeholder:text-surface-400 focus:outline-none focus:ring-2 focus:ring-purple-500"
+              className="w-full pl-10 pr-8 py-2 rounded-xl border border-surface-200 text-xs text-surface-900 placeholder:text-surface-400 focus:outline-none focus:ring-2 focus:ring-brand-500"
             />
             {city && (
               <button

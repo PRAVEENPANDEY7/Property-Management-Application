@@ -99,7 +99,7 @@ export const AdminPropertyEditPage = () => {
           <div>
             <Link
               to="/admin/properties"
-              className="inline-flex items-center gap-1.5 text-xs font-semibold text-surface-500 hover:text-purple-700 transition-colors mb-1"
+              className="inline-flex items-center gap-1.5 text-xs font-semibold text-surface-500 hover:text-brand-700 transition-colors mb-1"
             >
               <ArrowLeft className="w-3.5 h-3.5" /> Back to Properties List
             </Link>
@@ -115,7 +115,7 @@ export const AdminPropertyEditPage = () => {
             to={`/properties/${property.id}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="hidden sm:inline-flex items-center gap-1.5 text-xs font-semibold text-purple-700 hover:text-purple-900 bg-purple-50 px-3 py-1.5 rounded-xl border border-purple-200"
+            className="hidden sm:inline-flex items-center gap-1.5 text-xs font-semibold text-brand-700 hover:text-brand-900 bg-brand-50 px-3 py-1.5 rounded-xl border border-brand-200"
           >
             <span>View Public View</span>
             <ExternalLink className="w-3.5 h-3.5" />

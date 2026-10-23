@@ -34,7 +34,7 @@ export const AdminPropertyCreatePage = () => {
           <div>
             <Link
               to="/admin/properties"
-              className="inline-flex items-center gap-1.5 text-xs font-semibold text-surface-500 hover:text-purple-700 transition-colors mb-1"
+              className="inline-flex items-center gap-1.5 text-xs font-semibold text-surface-500 hover:text-brand-700 transition-colors mb-1"
             >
               <ArrowLeft className="w-3.5 h-3.5" /> Back to Properties List
             </Link>
