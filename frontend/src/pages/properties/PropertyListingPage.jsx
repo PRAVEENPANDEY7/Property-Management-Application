@@ -106,7 +106,7 @@ export const PropertyListingPage = () => {
           </div>
 
           <div className="space-y-3 max-w-2xl">
-            <h1 className="text-3xl sm:text-5xl font-black tracking-tight text-white leading-tight">
+            <h1 className="text-3xl sm:text-5xl font-black tracking-tight text-white leading-tight font-serif">
               Housio — <span className="text-gold-400">Find Your Exceptional.</span>
             </h1>
             <p className="text-xs sm:text-base text-slate-300 leading-relaxed font-normal">

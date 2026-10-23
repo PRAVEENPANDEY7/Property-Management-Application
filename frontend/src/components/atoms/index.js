@@ -6,3 +6,7 @@ export { default as Spinner } from './Spinner';
 export { default as Alert } from './Alert';
 export { default as Modal } from './Modal';
 export { default as BrandLogo } from './BrandLogo';
+export { default as SpotlightCard } from './SpotlightCard';
+export { default as Perspective3DCard } from './Perspective3DCard';
+export { default as BorderBeam } from './BorderBeam';
+export { default as Marquee } from './Marquee';

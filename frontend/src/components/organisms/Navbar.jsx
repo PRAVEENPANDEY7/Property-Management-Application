@@ -26,10 +26,10 @@ export const Navbar = () => {
           <nav className="hidden md:flex items-center gap-6">
             <Link
               to="/properties"
-              className="text-sm font-medium text-surface-600 hover:text-brand-600 transition-colors flex items-center gap-1.5"
+              className="text-xs sm:text-sm font-semibold text-surface-700 hover:text-brand-600 transition-colors flex items-center gap-1.5"
             >
-              <Compass className="w-4 h-4" />
-              Browse Properties
+              <Compass className="w-4 h-4 text-gold-500" />
+              Explore Estates
             </Link>
 
             {/* Geolocation Quick Trigger / Badge */}
@@ -106,8 +106,8 @@ export const Navbar = () => {
                   </Button>
                 </Link>
                 <Link to="/register">
-                  <Button variant="primary" size="sm">
-                    Get Started
+                  <Button variant="gold" size="sm" className="!rounded-xl font-bold shadow-soft">
+                    Join Housio
                   </Button>
                 </Link>
               </div>

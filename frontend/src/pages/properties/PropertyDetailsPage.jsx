@@ -16,7 +16,7 @@ import {
 import { usePropertyDetail, useNotification } from '../../hooks';
 import { PublicLayout } from '../../components/templates';
 import { PropertyPrice } from '../../components/molecules';
-import { Button, Badge, Spinner } from '../../components/atoms';
+import { Button, Badge, Spinner, SpotlightCard, Perspective3DCard } from '../../components/atoms';
 import { formatCurrency, formatDate, getImageUrl } from '../../utils';
 import { propertyService } from '../../services/propertyService';
 
@@ -123,27 +123,29 @@ export const PropertyDetailsPage = () => {
         <div className="lg:col-span-2 space-y-8">
           {/* Main Gallery Display */}
           <div className="space-y-4">
-            <div className="relative aspect-[16/10] sm:aspect-[16/9] rounded-3xl overflow-hidden bg-slate-900 shadow-soft-xl border border-surface-200">
-              <img
-                src={activeImageUrl}
-                alt={property.name}
-                className="w-full h-full object-cover transition-all duration-300"
-              />
+            <Perspective3DCard maxRotation={4} scale={1.01}>
+              <div className="relative aspect-[16/10] sm:aspect-[16/9] rounded-3xl overflow-hidden bg-slate-900 shadow-soft-xl border border-surface-200 group">
+                <img
+                  src={activeImageUrl}
+                  alt={property.name}
+                  className="w-full h-full object-cover transition-all duration-300 group-hover:scale-102"
+                />
 
-              <div className="absolute top-4 left-4">
-                <Badge variant="neutral" size="sm" className="!bg-white/95 !text-surface-900 backdrop-blur-md shadow-soft font-bold">
-                  <MapPin className="w-3.5 h-3.5 mr-1 text-brand-600" />
-                  {property.city}
-                </Badge>
-              </div>
-
-              {images.length > 0 && (
-                <div className="absolute bottom-4 right-4 px-3 py-1.5 rounded-xl bg-slate-900/70 text-white text-xs font-semibold backdrop-blur-sm flex items-center gap-1.5 shadow-soft">
-                  <ImageIcon className="w-4 h-4" />
-                  {images.length} {images.length === 1 ? 'photo' : 'photos'}
+                <div className="absolute top-4 left-4 z-20">
+                  <Badge variant="neutral" size="sm" className="!bg-white/95 !text-surface-900 backdrop-blur-md shadow-soft font-bold">
+                    <MapPin className="w-3.5 h-3.5 mr-1 text-brand-600" />
+                    {property.city}
+                  </Badge>
                 </div>
-              )}
-            </div>
+
+                {images.length > 0 && (
+                  <div className="absolute bottom-4 right-4 px-3 py-1.5 rounded-xl bg-slate-950/80 text-gold-300 text-xs font-semibold backdrop-blur-sm flex items-center gap-1.5 shadow-soft border border-gold-400/20 z-20">
+                    <ImageIcon className="w-4 h-4 text-gold-400" />
+                    {images.length} {images.length === 1 ? 'photo' : 'photos'}
+                  </div>
+                )}
+              </div>
+            </Perspective3DCard>
 
             {/* Thumbnail Strip */}
             {images.length > 1 && (
@@ -180,7 +182,7 @@ export const PropertyDetailsPage = () => {
           <div className="bg-white p-6 sm:p-8 rounded-3xl border border-surface-200 shadow-soft space-y-4">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-surface-100 pb-5">
               <div>
-                <h1 className="text-2xl sm:text-3xl font-extrabold text-surface-900 tracking-tight">
+                <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-surface-900 tracking-tight font-serif">
                   {property.name}
                 </h1>
                 <p className="text-sm text-surface-500 mt-1 flex items-center gap-1.5">
@@ -228,12 +230,16 @@ export const PropertyDetailsPage = () => {
 
         {/* Right Column (1 col): Contact Agent Card */}
         <div className="space-y-6">
-          <div className="sticky top-24 bg-white p-6 sm:p-8 rounded-3xl border border-surface-200 shadow-soft-xl space-y-6">
+          <SpotlightCard
+            spotlightColor="rgba(197, 155, 82, 0.15)"
+            borderColor="rgba(197, 155, 82, 0.4)"
+            className="sticky top-24 p-6 sm:p-8 shadow-soft-xl space-y-6"
+          >
             <div>
-              <span className="text-xs font-bold uppercase tracking-wider text-brand-600 block mb-1">
-                Direct Inquiry
+              <span className="text-xs font-bold uppercase tracking-wider text-gold-600 block mb-1">
+                Private Client Desk
               </span>
-              <h3 className="text-xl font-extrabold text-surface-900">
+              <h3 className="text-xl font-extrabold text-surface-900 font-serif">
                 Interested in this Estate?
               </h3>
               <p className="text-xs text-surface-500 mt-1">
@@ -315,27 +321,27 @@ export const PropertyDetailsPage = () => {
 
                 <Button
                   type="submit"
-                  variant="primary"
+                  variant="gold"
                   size="md"
                   isLoading={isSubmittingInquiry}
-                  className="w-full shadow-soft mt-2"
+                  className="w-full shadow-gold-glow mt-2 font-bold"
                 >
-                  Request Private Tour
+                  Request Private Showing
                 </Button>
               </form>
             )}
 
             <div className="pt-4 border-t border-surface-100 space-y-2 text-xs text-surface-500">
               <div className="flex items-center gap-2">
-                <Phone className="w-3.5 h-3.5 text-brand-600" />
+                <Phone className="w-3.5 h-3.5 text-gold-600" />
                 <span>Concierge Desk: +1 (800) 555-0199</span>
               </div>
               <div className="flex items-center gap-2">
-                <Mail className="w-3.5 h-3.5 text-brand-600" />
+                <Mail className="w-3.5 h-3.5 text-gold-600" />
                 <span>concierge@housio.com</span>
               </div>
             </div>
-          </div>
+          </SpotlightCard>
         </div>
       </div>
     </PublicLayout>

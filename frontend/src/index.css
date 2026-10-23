@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -18,9 +18,73 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
+
+  /* Custom Luxury Scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #041d1b;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #116e65;
+    border-radius: 4px;
+    border: 2px solid #041d1b;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #c59b52;
+  }
 }
 
 @layer utilities {
+  /* 3D Perspective & Transform Engine */
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+  .perspective-2000 {
+    perspective: 2000px;
+  }
+  .transform-style-3d {
+    transform-style: preserve-3d;
+  }
+  .backface-hidden {
+    backface-visibility: hidden;
+  }
+  .translate-z-10 {
+    transform: translateZ(10px);
+  }
+  .translate-z-20 {
+    transform: translateZ(20px);
+  }
+  .translate-z-30 {
+    transform: translateZ(30px);
+  }
+
+  /* 21st.dev / Aceternity Style Background Grid & Ambient Lighting */
+  .bg-grid-dark {
+    background-size: 40px 40px;
+    background-image: 
+      linear-gradient(to right, rgba(197, 155, 82, 0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(197, 155, 82, 0.05) 1px, transparent 1px);
+  }
+
+  .bg-grid-light {
+    background-size: 36px 36px;
+    background-image: 
+      linear-gradient(to right, rgba(17, 110, 101, 0.04) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(17, 110, 101, 0.04) 1px, transparent 1px);
+  }
+
+  .bg-radial-spotlight {
+    background: radial-gradient(circle at 50% 0%, rgba(197, 155, 82, 0.18) 0%, rgba(17, 110, 101, 0.12) 35%, transparent 70%);
+  }
+
+  .bg-radial-emerald {
+    background: radial-gradient(circle at 50% 50%, rgba(17, 110, 101, 0.22) 0%, rgba(4, 29, 27, 0) 70%);
+  }
+
+  /* Glassmorphism Suites */
   .glass-card {
     background: rgba(255, 255, 255, 0.88);
     backdrop-filter: blur(14px);
@@ -29,13 +93,27 @@
   }
 
   .glass-dark {
-    background: rgba(7, 29, 27, 0.85);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(197, 155, 82, 0.2);
+    background: rgba(4, 29, 27, 0.82);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(197, 155, 82, 0.18);
   }
 
-  /* Housio Signature Logo Gradient */
+  .glass-obsidian {
+    background: rgba(2, 11, 10, 0.88);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .glass-gold {
+    background: linear-gradient(135deg, rgba(197, 155, 82, 0.12) 0%, rgba(17, 110, 101, 0.08) 100%);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(197, 155, 82, 0.35);
+  }
+
+  /* Housio Signature Logo Gradient Typography */
   .text-gradient {
     background: linear-gradient(135deg, #116e65 0%, #c59b52 100%);
     -webkit-background-clip: text;
@@ -43,8 +121,47 @@
   }
 
   .text-gold-gradient {
-    background: linear-gradient(135deg, #e1cea3 0%, #c59b52 60%, #8e6333 100%);
+    background: linear-gradient(135deg, #f7f2e6 0%, #e1cea3 30%, #c59b52 70%, #8e6333 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
+
+  .text-teal-gradient {
+    background: linear-gradient(135deg, #b8e2db 0%, #1e8e83 60%, #0a3531 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  /* Shimmer / Glowing Borders */
+  .border-glow-gold {
+    box-shadow: 0 0 20px -3px rgba(197, 155, 82, 0.3), inset 0 0 15px -3px rgba(197, 155, 82, 0.15);
+  }
+
+  .border-glow-teal {
+    box-shadow: 0 0 20px -3px rgba(17, 110, 101, 0.3), inset 0 0 15px -3px rgba(17, 110, 101, 0.15);
+  }
+
+  /* 21st.dev & Magic UI Animations */
+  @keyframes borderBeam {
+    0% {
+      offset-distance: 0%;
+    }
+    100% {
+      offset-distance: 100%;
+    }
+  }
+
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(calc(-100% - var(--gap, 2rem)));
+    }
+  }
+
+  .animate-marquee {
+    animation: marquee var(--duration, 30s) linear infinite;
+  }
 }
+

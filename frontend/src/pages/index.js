@@ -8,4 +8,5 @@ export { default as AdminPropertyCreatePage } from './admin/AdminPropertyCreateP
 export { default as AdminPropertyEditPage } from './admin/AdminPropertyEditPage';
 export { default as AdminInquiriesPage } from './admin/AdminInquiriesPage';
 export { default as AdminSettingsPage } from './admin/AdminSettingsPage';
+export { default as LandingPage } from './LandingPage';
 export { default as NotFoundPage } from './NotFoundPage';
