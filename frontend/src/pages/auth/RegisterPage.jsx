@@ -63,9 +63,9 @@ export const RegisterPage = () => {
   return (
     <AuthLayout
       title="Create an Account"
-      subtitle="Join Housio to discover exceptional homes, luxury villas, and exclusive properties."
+      subtitle="Join Housio to browse exclusive properties and private listings."
     >
-      <form onSubmit={handleSubmit} className="space-y-4">
+      <form onSubmit={handleSubmit} className="space-y-3">
         {submitError && (
           <Alert type="error" onDismiss={() => setSubmitError(null)}>
             {submitError}
@@ -135,7 +135,7 @@ export const RegisterPage = () => {
         </Button>
       </form>
 
-      <div className="mt-6 text-center text-xs text-surface-500">
+      <div className="mt-3.5 text-center text-xs text-surface-500">
         Already have an account?{' '}
         <Link to="/login" className="font-bold text-brand-600 hover:text-brand-700">
           Sign in here

@@ -111,110 +111,127 @@ export const PropertyForm = ({
         </Alert>
       )}
 
-      {/* Basic Attributes Card */}
-      <div className="bg-white p-6 rounded-2xl border border-surface-200 shadow-soft space-y-4">
-        <h3 className="text-base font-bold text-surface-900 border-b border-surface-100 pb-3">
-          Property Details
-        </h3>
+      {/* Modern 2-Column Responsive Dashboard Layout */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+        {/* Left Column: Core Property Details (7 cols on lg, 8 on xl) */}
+        <div className="lg:col-span-7 xl:col-span-8 space-y-6">
+          <div className="bg-white p-6 sm:p-7 rounded-2xl border border-surface-200 shadow-soft space-y-5">
+            <div className="border-b border-surface-100 pb-3 flex items-center justify-between">
+              <h3 className="text-base font-bold text-surface-900">
+                Property Overview
+              </h3>
+              <span className="text-xs text-surface-400">Core listing details</span>
+            </div>
 
-        <FormField
-          label="Property Title"
-          id="name"
-          name="name"
-          value={values.name}
-          onChange={handleChange}
-          placeholder="e.g. Modern Sunset Penthouse"
-          required
-          error={errors.name}
-        />
+            <FormField
+              label="Property Title"
+              id="name"
+              name="name"
+              value={values.name}
+              onChange={handleChange}
+              placeholder="e.g. Modern Sunset Penthouse"
+              required
+              error={errors.name}
+            />
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <FormField
-            label="Price (USD)"
-            id="price"
-            name="price"
-            type="number"
-            step="0.01"
-            value={values.price}
-            onChange={handleChange}
-            placeholder="e.g. 1250000.00"
-            required
-            error={errors.price}
-          />
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <FormField
+                label="Price (USD)"
+                id="price"
+                name="price"
+                type="number"
+                step="0.01"
+                value={values.price}
+                onChange={handleChange}
+                placeholder="e.g. 1250000.00"
+                required
+                error={errors.price}
+              />
 
-          <FormField
-            label="City"
-            id="city"
-            name="city"
-            value={values.city}
-            onChange={handleChange}
-            placeholder="e.g. Miami"
-            required
-            error={errors.city}
-          />
+              <FormField
+                label="City"
+                id="city"
+                name="city"
+                value={values.city}
+                onChange={handleChange}
+                placeholder="e.g. Miami"
+                required
+                error={errors.city}
+              />
+            </div>
+
+            <FormField
+              label="Street Address / Location"
+              id="location"
+              name="location"
+              value={values.location}
+              onChange={handleChange}
+              placeholder="e.g. 100 Ocean Drive, Suite 400"
+              required
+              error={errors.location}
+            />
+
+            <FormField
+              as="textarea"
+              label="Description"
+              id="description"
+              name="description"
+              rows={4}
+              value={values.description}
+              onChange={handleChange}
+              placeholder="Comprehensive description of the architectural layout, amenities, square footage, and key features..."
+              required
+              error={errors.description}
+            />
+          </div>
         </div>
 
-        <FormField
-          label="Street Address / Location"
-          id="location"
-          name="location"
-          value={values.location}
-          onChange={handleChange}
-          placeholder="e.g. 100 Ocean Drive, Suite 400"
-          required
-          error={errors.location}
-        />
+        {/* Right Column: Sticky Action & Media Uploader (5 cols on lg, 4 on xl) */}
+        <div className="lg:col-span-5 xl:col-span-4 space-y-6 lg:sticky lg:top-20">
+          {/* Action / Publishing Card */}
+          <div className="bg-white p-6 rounded-2xl border border-surface-200 shadow-soft space-y-4">
+            <h3 className="text-base font-bold text-surface-900 border-b border-surface-100 pb-3">
+              Listing Actions
+            </h3>
+            <p className="text-xs text-surface-500 leading-relaxed">
+              Once published, this property will immediately appear in the public catalog and search listings.
+            </p>
+            <Button
+              type="submit"
+              variant="primary"
+              size="lg"
+              isLoading={isSubmitting}
+              className="w-full shadow-soft"
+            >
+              {submitButtonText}
+            </Button>
+          </div>
 
-        <FormField
-          as="textarea"
-          label="Description"
-          id="description"
-          name="description"
-          rows={5}
-          value={values.description}
-          onChange={handleChange}
-          placeholder="Comprehensive description of the architectural layout, amenities, square footage, and key features..."
-          required
-          error={errors.description}
-        />
-      </div>
+          {/* Media & Photography Card */}
+          <div className="bg-white p-6 rounded-2xl border border-surface-200 shadow-soft space-y-4">
+            <div className="border-b border-surface-100 pb-3 flex items-center justify-between">
+              <h3 className="text-base font-bold text-surface-900">
+                Media & Photography
+              </h3>
+              <span className="text-xs font-semibold text-brand-600 bg-brand-50 px-2 py-0.5 rounded-md">
+                {retainedImageIds.length + newFiles.length} photos
+              </span>
+            </div>
 
-      {/* Images Section Card */}
-      <div className="bg-white p-6 rounded-2xl border border-surface-200 shadow-soft space-y-4">
-        <div className="border-b border-surface-100 pb-3 flex items-center justify-between">
-          <h3 className="text-base font-bold text-surface-900">
-            Property Photography & Media
-          </h3>
-          <span className="text-xs text-surface-500">
-            {retainedImageIds.length + newFiles.length} photos selected
-          </span>
+            <ImageUploader
+              existingImages={existingImages}
+              retainedImageIds={retainedImageIds}
+              onRetainedImageIdsChange={setRetainedImageIds}
+              newFiles={newFiles}
+              onNewFilesChange={setNewFiles}
+              primaryImageId={primaryImageId}
+              onPrimaryImageIdChange={setPrimaryImageId}
+              primaryNewIndex={primaryNewIndex}
+              onPrimaryNewIndexChange={setPrimaryNewIndex}
+              error={errors.images}
+            />
+          </div>
         </div>
-
-        <ImageUploader
-          existingImages={existingImages}
-          retainedImageIds={retainedImageIds}
-          onRetainedImageIdsChange={setRetainedImageIds}
-          newFiles={newFiles}
-          onNewFilesChange={setNewFiles}
-          primaryImageId={primaryImageId}
-          onPrimaryImageIdChange={setPrimaryImageId}
-          primaryNewIndex={primaryNewIndex}
-          onPrimaryNewIndexChange={setPrimaryNewIndex}
-          error={errors.images}
-        />
-      </div>
-
-      {/* Submission Actions */}
-      <div className="flex items-center justify-end gap-3 pt-2">
-        <Button
-          type="submit"
-          variant="primary"
-          size="lg"
-          isLoading={isSubmitting}
-          className="w-full sm:w-auto shadow-soft"
-        >
-          {submitButtonText}
-        </Button>
       </div>
     </form>
   );

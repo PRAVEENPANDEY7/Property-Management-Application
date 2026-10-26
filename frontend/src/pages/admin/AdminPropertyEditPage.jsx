@@ -93,7 +93,7 @@ export const AdminPropertyEditPage = () => {
 
   return (
     <AdminLayout title={`Edit Property #${property.id}`}>
-      <div className="max-w-4xl mx-auto space-y-6">
+      <div className="w-full space-y-6">
         {/* Breadcrumb & Actions Bar */}
         <div className="flex items-center justify-between">
           <div>

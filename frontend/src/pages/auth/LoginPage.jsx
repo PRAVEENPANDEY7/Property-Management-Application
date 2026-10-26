@@ -74,7 +74,7 @@ export const LoginPage = () => {
       title="Welcome Back"
       subtitle="Sign in to access your portfolio and exclusive listings."
     >
-      <form onSubmit={handleSubmit} className="space-y-4">
+      <form onSubmit={handleSubmit} className="space-y-3">
         {submitError && (
           <Alert type="error" onDismiss={() => setSubmitError(null)}>
             {submitError}
@@ -150,22 +150,22 @@ export const LoginPage = () => {
 
       {/* Demo Credentials Section (Development only) */}
       {import.meta.env.DEV && (
-        <div className="mt-6 pt-5 border-t border-surface-100">
-          <div className="text-[11px] font-bold uppercase tracking-wider text-surface-400 mb-2.5 flex items-center gap-1.5">
-            <KeyRound className="w-3.5 h-3.5 text-brand-600" /> Quick Demo Credentials (Dev Only):
+        <div className="mt-3.5 pt-3 border-t border-surface-100">
+          <div className="text-[10px] font-bold uppercase tracking-wider text-surface-400 mb-1.5 flex items-center gap-1">
+            <KeyRound className="w-3 h-3 text-brand-600" /> Quick Demo Credentials:
           </div>
           <div className="grid grid-cols-2 gap-2">
             <button
               type="button"
               onClick={() => fillDemoAdmin('praveen@admin.com')}
-              className="py-1.5 px-2.5 text-xs font-semibold rounded-xl border border-gold-300/60 bg-gold-50/70 text-gold-800 hover:bg-gold-100/70 transition-colors"
+              className="py-1 px-2 text-xs font-semibold rounded-lg border border-gold-300/60 bg-gold-50/70 text-gold-800 hover:bg-gold-100/70 transition-colors"
             >
               Fill Admin Creds
             </button>
             <button
               type="button"
               onClick={fillDemoUser}
-              className="py-1.5 px-2.5 text-xs font-semibold rounded-xl border border-surface-200 bg-surface-50 text-surface-700 hover:bg-surface-100 transition-colors"
+              className="py-1 px-2 text-xs font-semibold rounded-lg border border-surface-200 bg-surface-50 text-surface-700 hover:bg-surface-100 transition-colors"
             >
               Fill User Creds
             </button>
@@ -173,7 +173,7 @@ export const LoginPage = () => {
         </div>
       )}
 
-      <div className="mt-6 text-center text-xs text-surface-500">
+      <div className="mt-3.5 text-center text-xs text-surface-500">
         Don't have an account?{' '}
         <Link to="/register" className="font-bold text-brand-600 hover:text-brand-700">
           Create an account

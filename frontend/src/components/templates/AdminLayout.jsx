@@ -89,18 +89,26 @@ export const AdminLayout = ({ children, title = 'Administration' }) => {
         </button>
       </div>
 
-      {/* Sidebar Navigation */}
+      {/* Mobile Backdrop Overlay */}
+      {sidebarOpen && (
+        <div
+          className="fixed inset-0 bg-slate-950/60 backdrop-blur-sm z-40 md:hidden"
+          onClick={() => setSidebarOpen(false)}
+        />
+      )}
+
+      {/* Sidebar Navigation - 100% Fixed and Static */}
       <aside
-        className={`fixed md:sticky top-0 inset-y-0 left-0 z-50 w-64 bg-slate-900 text-slate-200 flex flex-col border-r border-slate-800 transition-transform duration-200 md:translate-x-0 ${
+        className={`fixed inset-y-0 left-0 z-50 w-64 h-screen bg-slate-900 text-slate-200 flex flex-col border-r border-slate-800 transition-transform duration-200 md:translate-x-0 ${
           sidebarOpen ? 'translate-x-0' : '-translate-x-full'
         }`}
       >
         {/* Brand Header */}
-        <div className="p-6 border-b border-slate-800 flex items-center justify-between">
+        <div className="p-5 border-b border-slate-800 flex items-center justify-between flex-shrink-0">
           <Link to="/admin" className="flex items-center gap-2.5">
-            <img src="/housio-logo.png" alt="Housio Logo" className="h-9 w-auto object-contain drop-shadow" />
+            <img src="/housio-logo.png" alt="Housio Logo" className="h-8 w-auto object-contain drop-shadow" />
             <div>
-              <div className="font-extrabold text-lg text-white tracking-tight">
+              <div className="font-extrabold text-base text-white tracking-tight">
                 Hous<span className="text-gold-400 font-bold">io</span>
               </div>
               <div className="text-[10px] text-gold-400 font-bold tracking-widest uppercase">
@@ -156,7 +164,7 @@ export const AdminLayout = ({ children, title = 'Administration' }) => {
         </nav>
 
         {/* Current Admin Capsule & Logout */}
-        <div className="p-4 border-t border-slate-800 bg-slate-950/50">
+        <div className="p-4 border-t border-slate-800 bg-slate-950/70 flex-shrink-0">
           <Link
             to="/admin/settings"
             className="flex items-center justify-between mb-3 p-1.5 -m-1.5 rounded-xl hover:bg-slate-800/60 transition-colors group"
@@ -186,8 +194,8 @@ export const AdminLayout = ({ children, title = 'Administration' }) => {
         </div>
       </aside>
 
-      {/* Main Content Area */}
-      <div className="flex-1 flex flex-col min-w-0">
+      {/* Main Content Area - Offset by fixed sidebar on desktop */}
+      <div className="flex-1 flex flex-col min-w-0 md:pl-64">
         {/* Desktop Top Bar */}
         <header className="hidden md:flex h-16 bg-white border-b border-surface-200 px-8 items-center justify-between sticky top-0 z-30">
           <div className="flex items-center gap-2 text-sm text-surface-500">
