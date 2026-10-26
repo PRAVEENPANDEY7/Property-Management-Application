@@ -68,16 +68,23 @@ public class AuthService {
                     new UsernamePasswordAuthenticationToken(normalizedEmail, request.getPassword())
             );
 
-            User user = userRepository.findByEmailIgnoreCase(normalizedEmail)
-                    .orElseThrow(() -> new BadCredentialsException("Invalid email or password"));
+            UserPrincipal principal = (UserPrincipal) authentication.getPrincipal();
 
-            String token = tokenProvider.generateToken(user.getId(), user.getEmail(), user.getRole());
+            String token = tokenProvider.generateToken(principal.getId(), principal.getEmail(), principal.getRole());
+
+            UserResponseDto userDto = new UserResponseDto(
+                    principal.getId(),
+                    principal.getEmail(),
+                    principal.getFullName(),
+                    principal.getRole(),
+                    principal.getCreatedAt()
+            );
 
             return new AuthResponseDto(
                     token,
                     "Bearer",
                     tokenProvider.getExpirationMs(),
-                    UserResponseDto.fromEntity(user)
+                    userDto
             );
         } catch (BadCredentialsException ex) {
             // Never reveal whether an email exists or not

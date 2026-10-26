@@ -72,7 +72,7 @@ export const LoginPage = () => {
   return (
     <AuthLayout
       title="Welcome Back"
-      subtitle="Sign in to your account to browse exclusive properties and manage listings."
+      subtitle="Sign in to access your portfolio and exclusive listings."
     >
       <form onSubmit={handleSubmit} className="space-y-4">
         {submitError && (

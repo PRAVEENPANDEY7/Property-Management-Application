@@ -6,6 +6,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.time.Instant;
 import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
@@ -17,14 +18,20 @@ public class UserPrincipal implements UserDetails {
     private final String password;
     private final String fullName;
     private final Role role;
+    private final Instant createdAt;
     private final Collection<? extends GrantedAuthority> authorities;
 
     public UserPrincipal(Long id, String email, String password, String fullName, Role role, Collection<? extends GrantedAuthority> authorities) {
+        this(id, email, password, fullName, role, null, authorities);
+    }
+
+    public UserPrincipal(Long id, String email, String password, String fullName, Role role, Instant createdAt, Collection<? extends GrantedAuthority> authorities) {
         this.id = id;
         this.email = email;
         this.password = password;
         this.fullName = fullName;
         this.role = role;
+        this.createdAt = createdAt;
         this.authorities = authorities;
     }
 
@@ -39,12 +46,17 @@ public class UserPrincipal implements UserDetails {
                 user.getPasswordHash(),
                 user.getFullName(),
                 user.getRole(),
+                user.getCreatedAt(),
                 authorities
         );
     }
 
     public Long getId() {
         return id;
+    }
+
+    public Instant getCreatedAt() {
+        return createdAt;
     }
 
     public String getEmail() {

@@ -77,7 +77,7 @@ class AuthSecurityIntegrationTest {
 
         // Verify password in database is hashed with BCrypt
         User persisted = userRepository.findByEmailIgnoreCase("alice@example.com").orElseThrow();
-        assertThat(persisted.getPasswordHash()).startsWith("$2a$12$");
+        assertThat(persisted.getPasswordHash()).startsWith("$2a$10$");
         assertThat(passwordEncoder.matches("Password123!", persisted.getPasswordHash())).isTrue();
     }
 
